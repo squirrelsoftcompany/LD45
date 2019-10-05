@@ -31,9 +31,10 @@ namespace Control
         // Update is called once per frame
         private void Update()
         {
-            if (!test && !_dying) return;
+            bool suicideRequested = Input.GetButtonUp("Suicide");
+            if (!suicideRequested && !_dying) return;
 
-            if (test && !_dying)
+            if (suicideRequested && !_dying)
             {
                 // todo deactivate previous controller
                 // todo "kill" previous pig
@@ -62,7 +63,6 @@ namespace Control
                 if (_mask.transform.localPosition.magnitude <= 0.01) _dying = false;
             }
 
-            test = false;
         }
     }
 }
