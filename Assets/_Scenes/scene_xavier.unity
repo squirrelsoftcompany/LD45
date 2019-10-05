@@ -290,8 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mAcceleration: 400
-  mMaxSpeed: 1
-  mSpawn: {fileID: 887507492}
+  mMaxSpeed: 1.5
   mTarget: {fileID: 887507492}
   mMaxTargetDistance: 5
 --- !u!61 &541759401

@@ -7,7 +7,7 @@ public class Butcher : MonoBehaviour
 
     [SerializeField] private float mAcceleration;
     [SerializeField] private float mMaxSpeed;
-    [SerializeField] private GameObject mSpawn;
+    //[SerializeField] private GameObject mSpawn;
     [SerializeField] private GameObject mTarget;
     [SerializeField] private float mMaxTargetDistance;
 
@@ -34,6 +34,7 @@ public class Butcher : MonoBehaviour
     {
         //Search a target
         Transform lTargetTransform = mTarget.transform;
+        float lDistanceFromTarget = Vector3.Distance(transform.position, lTargetTransform.position);
         bool lVisible = false;
 
         // Is it visible ?
@@ -50,7 +51,8 @@ public class Butcher : MonoBehaviour
         }
 
         // Is it close enought ?
-        if (lVisible && Vector3.Distance(transform.position, lTargetTransform.position) < mMaxTargetDistance)
+        float lMinDistance = 1.4f;
+        if (lVisible && lDistanceFromTarget < mMaxTargetDistance && lDistanceFromTarget > lMinDistance)
         {
             mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
         } 
