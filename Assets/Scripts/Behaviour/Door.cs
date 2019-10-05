@@ -18,11 +18,13 @@ namespace Behaviour
 
         public override void ButtonateMe()
         {
+            _anim.ResetTrigger(Close);
             _anim.SetTrigger(Open);
         }
 
         public override void UnbuttonateMe()
         {
+            _anim.ResetTrigger(Open);
             _anim.SetTrigger(Close);
         }
     }
