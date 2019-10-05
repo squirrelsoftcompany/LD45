@@ -22,11 +22,13 @@ namespace Control
 
         private bool _dying;
         private Collider2D _maskCollider2D;
+        private Movement _movement;
 
         // Start is called before the first frame update
         private void Start()
         {
             _currentPig = GameObject.FindWithTag("Player");
+            _movement = _currentPig.GetComponent<Movement>();
             _mask = GameObject.FindWithTag("Mask");
             _maskCollider2D = _mask.GetComponent<Collider2D>();
         }
@@ -42,11 +44,14 @@ namespace Control
                 // deactivate happyArea triggering
                 _maskCollider2D.enabled = false;
                 
+                // deactivate previous controller
+                _movement.enabled = false;
                 
-                // todo deactivate previous controller
                 // todo "kill" previous pig
 
                 _currentPig = Instantiate(pigPrefab, spawn.transform.position, Quaternion.identity, spawn.transform);
+                _movement = _currentPig.GetComponent<Movement>();
+                _movement.enabled = false;
 
                 _maskParent = null;
                 foreach (Transform child in _currentPig.transform)
@@ -73,6 +78,7 @@ namespace Control
                     
             _dying = false;
             _maskCollider2D.enabled = true;
+            _movement.enabled = true;
         }
     }
 }
