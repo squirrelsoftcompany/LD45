@@ -40,38 +40,21 @@ namespace Control {
             bool suicideRequested = Input.GetButtonUp("Suicide");
             if (!suicideRequested && !_dying) return;
 
-            if (suicideRequested && !_dying) {
-                // deactivate happyArea triggering
-                _maskCollider2D.enabled = false;
-
-                // "kill" previous pig
-                killPig(_currentPig);
-
-                _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
-                _movement = _currentPig.GetComponent<Movement>();
-                _movement.enabled = false;
-
-                _maskParent = null;
-                foreach (Transform child in _currentPig.transform) {
-                    if (!child.gameObject.CompareTag("MaskParent")) continue;
-
-                    _maskParent = child.gameObject;
-                    break;
-                }
-
-                Debug.Assert(_maskParent, "no mask parent found");
-
-                _dying = true;
+            if (suicideRequested && !_dying)
+            {
+                SuicidePig();
             }
+            else
+            {
+                if (MaskTransferIteration())
+                {
+                    TransferComplete();
+                }
+            }
+        }
 
-            if (!_dying) return;
-
-            var position = _mask.transform.position;
-            position = Vector3.Slerp(position, _maskParent.transform.position, Time.deltaTime * 2);
-            _mask.transform.position = position;
-
-            if (!(Vector3.Distance(position, _maskParent.transform.position) <= 0.01)) return;
-
+        private void TransferComplete()
+        {
             _mask.transform.SetParent(_maskParent.transform);
 
             _dying = false;
@@ -79,8 +62,46 @@ namespace Control {
             _movement.enabled = true;
         }
 
+        private bool MaskTransferIteration()
+        {
+            var position = _mask.transform.position;
+            position = Vector3.Slerp(position, _maskParent.transform.position, Time.deltaTime * 2);
+            _mask.transform.position = position;
+
+            return Vector3.Distance(position, _maskParent.transform.position) <= 0.01;
+        }
+
+        private void SuicidePig()
+        {
+            // deactivate happyArea triggering
+            _maskCollider2D.enabled = false;
+
+            // "kill" previous pig
+            killPig(_currentPig);
+
+            // create new pig...
+            _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
+
+            // and retrieve some information
+            _movement = _currentPig.GetComponent<Movement>();
+            _movement.enabled = false;
+
+            _maskParent = null;
+            foreach (Transform child in _currentPig.transform)
+            {
+                if (!child.gameObject.CompareTag("MaskParent")) continue;
+
+                _maskParent = child.gameObject;
+                break;
+            }
+
+            Debug.Assert(_maskParent != null, "no mask parent found");
+
+            _dying = true;
+        }
+
         private void killPig(GameObject pig) {
-            // TODO "kill" previous pig
+            // "kill" previous pig
             pig.GetComponent<Animator>().SetBool(DEAD, true);
             pig.GetComponent<Flammable>().enabled = true;
             pig.GetComponent<Attack>().enabled = false;
