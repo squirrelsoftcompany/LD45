@@ -544,8 +544,7 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 0
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform:
-    Standalone: 3
+  apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Template
@@ -630,6 +629,6 @@ PlayerSettings:
   projectName: 
   organizationId: 
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 1
-  disableOldInputManagerSupport: 1
+  enableNativePlatformBackendsForNewInputSystem: 0
+  disableOldInputManagerSupport: 0
   legacyClampBlendShapeWeights: 1
