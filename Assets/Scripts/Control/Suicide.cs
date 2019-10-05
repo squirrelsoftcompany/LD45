@@ -9,6 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Control
 {
+    [RequireComponent(typeof(Collider2D))]
     public class Suicide : MonoBehaviour
     {
         // new pig creation information
@@ -27,10 +28,12 @@ namespace Control
         // Start is called before the first frame update
         private void Start()
         {
-            _currentPig = GameObject.FindWithTag("Player");
-            _movement = _currentPig.GetComponent<Movement>();
-            _mask = GameObject.FindWithTag("Mask");
+            _mask = gameObject;
             _maskCollider2D = _mask.GetComponent<Collider2D>();
+
+            _maskParent = _mask.transform.parent.gameObject;
+            _currentPig = _maskParent.transform.parent.gameObject;
+            _movement = _currentPig.GetComponent<Movement>();
         }
 
         // Update is called once per frame

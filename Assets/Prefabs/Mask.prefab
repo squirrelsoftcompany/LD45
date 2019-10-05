@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6727222064262637546}
   - component: {fileID: 6727222064262637545}
   - component: {fileID: 1356402033}
+  - component: {fileID: 8104442692835928330}
+  - component: {fileID: 7037382385229992942}
   m_Layer: 9
   m_Name: Mask
   m_TagString: Mask
@@ -107,3 +109,93 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &8104442692835928330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6727222064262637544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa39e69ee488484439cd909f5f2a3254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: OnMaskExitHappyArea
+    gameEvent: {fileID: 11400000, guid: 2942b3ec4c96ede44bfae1d5a3a46366, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7037382385229992942}
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: OnMaskEnterHappyArea
+    gameEvent: {fileID: 11400000, guid: b60675c34115fa14ea2b2759ac6b479a, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7037382385229992942}
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &7037382385229992942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6727222064262637544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cf536e75cd5fff47adb24666fecc17e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pigPrefab: {fileID: 1484370150005605934, guid: 29202e44cae08224898b7665bc895d91,
+    type: 3}
+  spawn: {fileID: 0}
