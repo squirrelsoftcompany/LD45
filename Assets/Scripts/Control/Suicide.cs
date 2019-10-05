@@ -1,11 +1,5 @@
-﻿using System;
-using System.Numerics;
-using control;
+﻿using control;
 using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.Serialization;
-using Quaternion = UnityEngine.Quaternion;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Control {
     [RequireComponent(typeof(Collider2D))]
@@ -109,6 +103,14 @@ namespace Control {
 
         private void killPig(GameObject pig) {
             // "kill" previous pig
+            var rb2D = pig.GetComponent<Rigidbody2D>();
+            if (fog) {
+                rb2D.gravityScale = 0;
+                rb2D.bodyType = RigidbodyType2D.Static;
+                // TODO FIXME instantiate ghost right here, but let the body pig get to the floor
+            }
+            // TODO wait for pig to touch ground, then static it
+
             pig.GetComponent<Animator>().SetBool(DEAD, true);
             pig.GetComponent<Flammable>().enabled = true;
             pig.GetComponent<Attack>().enabled = false;
