@@ -1,57 +1,85 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace GameEventSystem {
     [AddComponentMenu("GameEventListener")]
     public class GameEventListener : MonoBehaviour {
-        public GameEvent gameEvent;
-        public UnityEvent response;
-        public ResponseWithString responseForSentString;
-        public ResponseWithInt responseForSentInt;
-        public ResponseWithFloat responseForSentFloat;
-        public ResponseWithBool responseForSentBool;
-        public ResponseWithMonoBehaviour responseForSentMonoBehaviour;
+        //[Reorderable]
+        public List<EventAndResponse> eventAndResponses = new List<EventAndResponse>();
 
         private void OnEnable() {
-            gameEvent.RegisterListener(this);
+            if (eventAndResponses.Count == 0) return;
+            foreach (var eAndR in eventAndResponses) {
+                eAndR.gameEvent.RegisterListener(this);
+            }
         }
 
         private void OnDisable() {
-            gameEvent.UnregisterListener(this);
+            if (eventAndResponses.Count == 0) return;
+            foreach (var eAndR in eventAndResponses) {
+                eAndR.gameEvent.UnregisterListener(this);
+            }
         }
 
-        [ContextMenu("Raise Event")]
-        public void OnEventRaised() {
-            // default/generic
-            if (response.GetPersistentEventCount() >= 1) {
-                // always check if at least 1 object is listening for the event
-                response.Invoke();
+        [ContextMenu("Raise Events")]
+        public void OnEventRaised(GameEvent passedEvent) {
+            Debug.Log("We are onEventRaised");
+            for (var i = eventAndResponses.Count - 1; i >= 0; i--) {
+                // Check if the passed event is the correct one
+                Debug.Log("Inside for loop");
+                if (passedEvent == eventAndResponses[i].gameEvent) {
+                    // Uncomment the line below for debugging the event listens and other details
+                    Debug.Log("Called Event named: " + eventAndResponses[i].name + " on GameObject: " +
+                              gameObject.name);
+                    eventAndResponses[i].EventRaised();
+                }
             }
+        }
 
-            // string
-            if (responseForSentString.GetPersistentEventCount() >= 1) {
-                responseForSentString.Invoke(gameEvent.sentString);
-            }
+        [Serializable]
+        public class EventAndResponse {
+            public string name;
+            public GameEvent gameEvent;
+            public UnityEvent response;
+            public ResponseWithString responseForSentString;
+            public ResponseWithInt responseForSentInt;
+            public ResponseWithFloat responseForSentFloat;
+            public ResponseWithBool responseForSentBool;
+            public ResponseWithMonoBehaviour responseForSentMonoBehaviour;
 
-            // int
-            if (responseForSentInt.GetPersistentEventCount() >= 1) {
-                responseForSentInt.Invoke(gameEvent.sentInt);
-            }
+            public void EventRaised() {
+                // default/generic
+                if (response.GetPersistentEventCount() >= 1) {
+                    // always check if at least 1 object is listening for the event
+                    response.Invoke();
+                }
 
-            // float
-            if (responseForSentFloat.GetPersistentEventCount() >= 1) {
-                responseForSentFloat.Invoke(gameEvent.sentFloat);
-            }
+                // string
+                if (responseForSentString.GetPersistentEventCount() >= 1) {
+                    responseForSentString.Invoke(gameEvent.sentString);
+                }
 
-            // bool
-            if (responseForSentBool.GetPersistentEventCount() >= 1) {
-                responseForSentBool.Invoke(gameEvent.sentBool);
-            }
+                // int
+                if (responseForSentInt.GetPersistentEventCount() >= 1) {
+                    responseForSentInt.Invoke(gameEvent.sentInt);
+                }
 
-            // Flammable
-            if (responseForSentMonoBehaviour.GetPersistentEventCount() >= 1) {
-                responseForSentMonoBehaviour.Invoke(gameEvent.sentMonoBehaviour);
+                // float
+                if (responseForSentFloat.GetPersistentEventCount() >= 1) {
+                    responseForSentFloat.Invoke(gameEvent.sentFloat);
+                }
+
+                // bool
+                if (responseForSentBool.GetPersistentEventCount() >= 1) {
+                    responseForSentBool.Invoke(gameEvent.sentBool);
+                }
+
+                // Flammable
+                if (responseForSentMonoBehaviour.GetPersistentEventCount() >= 1) {
+                    responseForSentMonoBehaviour.Invoke(gameEvent.sentMonoBehaviour);
+                }
             }
         }
     }

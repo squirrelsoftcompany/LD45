@@ -20,7 +20,7 @@ namespace GameEventSystem
         {
             for (var i = _listeners.Count - 1; i >= 0; i--)
             {
-                _listeners[i].OnEventRaised();
+                _listeners[i].OnEventRaised(this);
             }
         }
 
