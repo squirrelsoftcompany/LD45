@@ -9,7 +9,6 @@ namespace control {
         public float rayCheckDistance;
         private Rigidbody2D rb;
         private bool facingRight = true;
-        [SerializeField] private bool grounded = true;
         private Animator animator;
         private static readonly int JUMP = Animator.StringToHash("jump");
         private static readonly int RUN = Animator.StringToHash("run");
@@ -26,17 +25,23 @@ namespace control {
         void FixedUpdate() {
             float x = Input.GetAxis("Horizontal");
             if (Input.GetAxis("Jump") > 0) {
-                if (grounded || isGrounded()) {
-                    rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+                if (isGrounded()) {
+                    var rbVelocity = rb.velocity;
+                    rbVelocity.y = jump;
+                    rb.velocity = rbVelocity;
+//                    rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
                     animator.SetTrigger(JUMP);
-                    grounded = false;
                 }
             }
 
             var velocity = rb.velocity;
             velocity = new Vector3(x * speed, velocity.y, 0);
             rb.velocity = velocity;
-            animator.SetBool(RUN, velocity.sqrMagnitude > 0);
+            if (Mathf.Abs(velocity.y) > 0f) {
+                animator.SetTrigger(JUMP);
+            } else {
+                animator.SetBool(RUN, velocity.sqrMagnitude > 0);
+            }
 
             if (rb.velocity.x > 0 && !facingRight) {
                 flip();
