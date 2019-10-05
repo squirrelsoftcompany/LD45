@@ -15,24 +15,25 @@ namespace Control
         public bool test;
 
         // initialisation
-        public GameObject currentPig;
-        public GameObject mask;
+        private GameObject _currentPig;
+        private GameObject _mask;
 
-        private bool dying;
+        private bool _dying;
         
         // Start is called before the first frame update
         private void Start()
         {
             test = false;
-            currentPig = GameObject.FindWithTag("Player");
+            _currentPig = GameObject.FindWithTag("Player");
+            _mask = GameObject.FindWithTag("Mask");
         }
 
         // Update is called once per frame
         private void Update()
         {
-            if (!test && !dying) return;
+            if (!test && !_dying) return;
 
-            if (test && !dying)
+            if (test && !_dying)
             {
                 // todo deactivate previous controller
                 // todo "kill" previous pig
@@ -41,7 +42,7 @@ namespace Control
                 GameObject maskParent = null;
                 foreach (Transform child in newPig.transform)
                 {
-                    if (!child.gameObject.CompareTag("maskParent")) continue;
+                    if (!child.gameObject.CompareTag("MaskParent")) continue;
 
                     maskParent = child.gameObject;
                     break;
@@ -49,16 +50,16 @@ namespace Control
                 
                 if (maskParent != null)
                 {
-                    mask.transform.SetParent(maskParent.transform);
+                    _mask.transform.SetParent(maskParent.transform);
                 }
 
-                dying = true;
+                _dying = true;
             }
 
-            if (dying)
+            if (_dying)
             {
-                mask.transform.localPosition = Vector3.Slerp(mask.transform.localPosition, Vector3.zero, Time.deltaTime * 2);
-                if (mask.transform.localPosition.magnitude <= 0.01) dying = false;
+                _mask.transform.localPosition = Vector3.Slerp(_mask.transform.localPosition, Vector3.zero, Time.deltaTime * 2);
+                if (_mask.transform.localPosition.magnitude <= 0.01) _dying = false;
             }
 
             test = false;

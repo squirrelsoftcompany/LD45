@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1484370149322067132}
   m_Layer: 0
   m_Name: pig
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 254296248}
   m_Layer: 0
   m_Name: BaconSamedi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484370150005605934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.568065, y: -0.3892349, z: -23.478558}
+  m_LocalPosition: {x: 2.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1484370149322067135}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 7464815655595150118}
   m_Layer: 0
   m_Name: maskParent
-  m_TagString: maskParent
+  m_TagString: MaskParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
