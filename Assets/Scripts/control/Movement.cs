@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace control {
     [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
@@ -67,7 +68,7 @@ namespace control {
 
             var transform1 = transform;
             var theScale = transform1.localScale;
-            theScale.x *= -1;
+            theScale.x = Math.Abs(theScale.x) * (facingRight?1:-1);
             transform1.localScale = theScale;
         }
     }

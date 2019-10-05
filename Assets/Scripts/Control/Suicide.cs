@@ -80,7 +80,9 @@ namespace Control {
             killPig(_currentPig);
 
             // create new pig...
+            var scale = _currentPig.transform.localScale;
             _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
+            _currentPig.transform.localScale = scale;
 
             // and retrieve some information
             _movement = _currentPig.GetComponent<Movement>();
