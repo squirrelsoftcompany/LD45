@@ -36,6 +36,9 @@ namespace Control
 
             if (suicideRequested && !_dying)
             {
+                // deactivate happyArea triggering
+                _mask.GetComponent<Collider2D>().enabled = false;
+                
                 // todo deactivate previous controller
                 // todo "kill" previous pig
                 var newPig = Instantiate(pigPrefab, spawn.transform.position, Quaternion.identity, spawn.transform);
@@ -59,10 +62,16 @@ namespace Control
 
             if (_dying)
             {
-                _mask.transform.localPosition = Vector3.Slerp(_mask.transform.localPosition, Vector3.zero, Time.deltaTime * 2);
-                if (_mask.transform.localPosition.magnitude <= 0.01) _dying = false;
-            }
+                var localPosition = _mask.transform.localPosition;
+                localPosition = Vector3.Slerp(localPosition, Vector3.zero, Time.deltaTime * 2);
+                _mask.transform.localPosition = localPosition;
 
+                if (localPosition.magnitude <= 0.01)
+                {
+                    _dying = false;
+                    _mask.GetComponent<Collider2D>().enabled = true;
+                }
+            }
         }
     }
 }
