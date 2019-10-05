@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class Movement : MonoBehaviour {
     public float speed;
     public float jump;
     public GameObject rayOrigin;
     public float rayCheckDistance;
-    Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
-    private bool facingRight = false;
+    private Rigidbody2D rb;
+    private bool facingRight = true;
     private bool grounded = true;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private bool isGrounded() {
@@ -56,8 +52,9 @@ public class Movement : MonoBehaviour {
     private void flip() {
         facingRight = !facingRight;
 
-        var theScale = transform.localScale;
+        var transform1 = transform;
+        var theScale = transform1.localScale;
         theScale.x *= -1;
-        transform.localScale = theScale;
+        transform1.localScale = theScale;
     }
 }
