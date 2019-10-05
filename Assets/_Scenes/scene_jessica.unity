@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 887507493}
   - component: {fileID: 887507495}
   - component: {fileID: 887507496}
+  - component: {fileID: 887507497}
   m_Layer: 0
   m_Name: pig
   m_TagString: Untagged
@@ -333,7 +334,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887507492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.57, y: -0, z: 0}
+  m_LocalPosition: {x: 3.06, y: 2.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -386,6 +387,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.90405905}
   m_EdgeRadius: 0
+--- !u!114 &887507497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887507492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514ecea4ef99e884998343709918ffc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
 --- !u!1 &1598666045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,38 +1589,38 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1711376621}
     m_ColliderPaths:
-    - - X: 60000012
-        Y: -40000100
-      - X: 60000012
-        Y: -9999900
+    - - X: 59999971
+        Y: -40000000
+      - X: 59999971
+        Y: -10000000
       - X: 0
-        Y: -9999842
-      - X: -87
+        Y: -9999971
+      - X: -29
         Y: 40000000
       - X: -70000000
-        Y: 39999913
-      - X: -69999913
+        Y: 39999971
+      - X: -69999971
         Y: -40000000
-    - - X: 19999913
+    - - X: 19999971
         Y: 0
-      - X: 19999913
+      - X: 19999971
         Y: 10000000
       - X: 10000000
-        Y: 9999913
-      - X: 10000087
+        Y: 9999971
+      - X: 10000029
         Y: 0
   m_CompositePaths:
     m_Paths:
-    - - {x: 5.9999986, y: -4.00001}
-      - {x: 5.9999986, y: -0.99999}
-      - {x: 0, y: -0.9999813}
-      - {x: -0.0000116, y: 4}
-      - {x: -7, y: 3.9999886}
-      - {x: -6.999989, y: -4}
-    - - {x: 1.9999884, y: 0}
-      - {x: 1.9999884, y: 1}
-      - {x: 1, y: 0.99998844}
-      - {x: 1.0000116, y: 0}
+    - - {x: 5.9999943, y: -4}
+      - {x: 5.9999943, y: -1}
+      - {x: 0, y: -0.9999942}
+      - {x: -0.0000058, y: 4}
+      - {x: -7, y: 3.9999945}
+      - {x: -6.9999943, y: -4}
+    - - {x: 1.9999943, y: 0}
+      - {x: 1.9999943, y: 1}
+      - {x: 1, y: 0.9999942}
+      - {x: 1.0000058, y: 0}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!50 &1711376623
