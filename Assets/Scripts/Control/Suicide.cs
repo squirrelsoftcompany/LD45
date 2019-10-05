@@ -22,6 +22,7 @@ namespace Control {
         private Collider2D _maskCollider2D;
         private Movement _movement;
         private static readonly int DEAD = Animator.StringToHash("dead");
+        private bool fog;
 
         // Start is called before the first frame update
         private void Start() {
@@ -53,6 +54,10 @@ namespace Control {
             }
         }
 
+        public void setFog(bool theFog) {
+            fog = theFog;
+        }
+
         private void TransferComplete()
         {
             _mask.transform.SetParent(_maskParent.transform);
@@ -71,7 +76,7 @@ namespace Control {
             return Vector3.Distance(position, _maskParent.transform.position) <= 0.01;
         }
 
-        private void SuicidePig()
+        public void SuicidePig()
         {
             // deactivate happyArea triggering
             _maskCollider2D.enabled = false;
