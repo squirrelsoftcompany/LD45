@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Numerics;
+using control;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Serialization;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
@@ -16,14 +18,17 @@ namespace Control
         // initialisation
         private GameObject _currentPig;
         private GameObject _mask;
+        private GameObject _maskParent;
 
         private bool _dying;
-        
+        private Collider2D _maskCollider2D;
+
         // Start is called before the first frame update
         private void Start()
         {
             _currentPig = GameObject.FindWithTag("Player");
             _mask = GameObject.FindWithTag("Mask");
+            _maskCollider2D = _mask.GetComponent<Collider2D>();
         }
 
         // Update is called once per frame
@@ -35,41 +40,39 @@ namespace Control
             if (suicideRequested && !_dying)
             {
                 // deactivate happyArea triggering
-                _mask.GetComponent<Collider2D>().enabled = false;
+                _maskCollider2D.enabled = false;
+                
                 
                 // todo deactivate previous controller
                 // todo "kill" previous pig
-                var newPig = Instantiate(pigPrefab, spawn.transform.position, Quaternion.identity, spawn.transform);
 
-                GameObject maskParent = null;
-                foreach (Transform child in newPig.transform)
+                _currentPig = Instantiate(pigPrefab, spawn.transform.position, Quaternion.identity, spawn.transform);
+
+                _maskParent = null;
+                foreach (Transform child in _currentPig.transform)
                 {
                     if (!child.gameObject.CompareTag("MaskParent")) continue;
 
-                    maskParent = child.gameObject;
+                    _maskParent = child.gameObject;
                     break;
                 }
-                
-                if (maskParent != null)
-                {
-                    _mask.transform.SetParent(maskParent.transform);
-                }
+                Debug.Assert(_maskParent, "no mask parent found");
 
                 _dying = true;
             }
 
-            if (_dying)
-            {
-                var localPosition = _mask.transform.localPosition;
-                localPosition = Vector3.Slerp(localPosition, Vector3.zero, Time.deltaTime * 2);
-                _mask.transform.localPosition = localPosition;
+            if (!_dying) return;
+            
+            var position = _mask.transform.position;
+            position = Vector3.Slerp(position, _maskParent.transform.position, Time.deltaTime * 2);
+            _mask.transform.position = position;
 
-                if (localPosition.magnitude <= 0.01)
-                {
-                    _dying = false;
-                    _mask.GetComponent<Collider2D>().enabled = true;
-                }
-            }
+            if (!(Vector3.Distance(position, _maskParent.transform.position) <= 0.01)) return;
+            
+            _mask.transform.SetParent(_maskParent.transform);
+                    
+            _dying = false;
+            _maskCollider2D.enabled = true;
         }
     }
 }
