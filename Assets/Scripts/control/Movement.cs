@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace control {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
     public class Movement : MonoBehaviour {
         public float speed;
         public float jump;
@@ -10,9 +10,13 @@ namespace control {
         private Rigidbody2D rb;
         private bool facingRight = true;
         private bool grounded = true;
+        private Animator animator;
+        private static readonly int JUMP = Animator.StringToHash("jump");
+        private static readonly int RUN = Animator.StringToHash("run");
 
         private void Start() {
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
         }
 
         private bool isGrounded() {
@@ -25,11 +29,16 @@ namespace control {
             if (Input.GetAxis("Jump") > 0) {
                 if (grounded) {
                     rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
+                    animator.SetTrigger(JUMP);
                     grounded = false;
                 }
             }
 
-            rb.velocity = new Vector3(x * speed, rb.velocity.y, 0);
+            var velocity = rb.velocity;
+            velocity = new Vector3(x * speed, velocity.y, 0);
+            rb.velocity = velocity;
+            animator.SetBool(RUN, velocity.sqrMagnitude > 0);
+
             if (rb.velocity.x > 0 && !facingRight) {
                 flip();
             } else if (rb.velocity.x < 0 && facingRight) {

@@ -21,6 +21,7 @@ namespace Control {
         private bool _dying;
         private Collider2D _maskCollider2D;
         private Movement _movement;
+        private static readonly int DEAD = Animator.StringToHash("dead");
 
         // Start is called before the first frame update
         private void Start() {
@@ -42,7 +43,7 @@ namespace Control {
             if (suicideRequested && !_dying) {
                 // deactivate happyArea triggering
                 _maskCollider2D.enabled = false;
-                
+
                 // "kill" previous pig
                 killPig(_currentPig);
 
@@ -80,6 +81,7 @@ namespace Control {
 
         private void killPig(GameObject pig) {
             // TODO "kill" previous pig
+            pig.GetComponent<Animator>().SetBool(DEAD, true);
             pig.GetComponent<Flammable>().enabled = true;
             pig.GetComponent<Attack>().enabled = false;
             // deactivate previous controller
