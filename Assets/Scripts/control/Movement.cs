@@ -9,7 +9,7 @@ namespace control {
         public float rayCheckDistance;
         private Rigidbody2D rb;
         private bool facingRight = true;
-        private bool grounded = true;
+        [SerializeField] private bool grounded = true;
         private Animator animator;
         private static readonly int JUMP = Animator.StringToHash("jump");
         private static readonly int RUN = Animator.StringToHash("run");
@@ -20,14 +20,13 @@ namespace control {
         }
 
         private bool isGrounded() {
-            var hit = Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance);
-            return hit.collider != null;
+            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance);
         }
 
         void FixedUpdate() {
             float x = Input.GetAxis("Horizontal");
             if (Input.GetAxis("Jump") > 0) {
-                if (grounded) {
+                if (grounded || isGrounded()) {
                     rb.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
                     animator.SetTrigger(JUMP);
                     grounded = false;
@@ -45,18 +44,18 @@ namespace control {
                 flip();
             }
         }
-
-        private void OnCollisionEnter2D(Collision2D other) {
-            if (isGrounded()) {
-                grounded = true;
-            }
-        }
-
-        private void OnCollisionStay2D(Collision2D other) {
-            if (!grounded && other.gameObject.transform.position.y < transform.position.y) {
-                grounded = isGrounded();
-            }
-        }
+//
+//        private void OnCollisionEnter2D(Collision2D other) {
+//            if (isGrounded()) {
+//                grounded = true;
+//            }
+//        }
+//
+//        private void OnCollisionStay2D(Collision2D other) {
+//            if (!grounded && other.gameObject.transform.position.y < transform.position.y) {
+//                grounded = isGrounded();
+//            }
+//        }
 
         private void flip() {
             facingRight = !facingRight;
