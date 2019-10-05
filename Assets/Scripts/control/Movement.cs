@@ -19,7 +19,7 @@ namespace control {
         }
 
         private bool isGrounded() {
-            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance);
+            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance).collider != null;
         }
 
         void FixedUpdate() {
