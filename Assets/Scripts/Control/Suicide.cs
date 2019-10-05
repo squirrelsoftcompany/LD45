@@ -14,13 +14,12 @@ namespace Control
     {
         // new pig creation information
         public GameObject pigPrefab;
-        public GameObject spawn;
+        private GameObject _spawn;
 
-        // initialisation
+        // working variable
         private GameObject _currentPig;
         private GameObject _mask;
         private GameObject _maskParent;
-
         private bool _dying;
         private Collider2D _maskCollider2D;
         private Movement _movement;
@@ -28,6 +27,8 @@ namespace Control
         // Start is called before the first frame update
         private void Start()
         {
+            _spawn = GameObject.FindWithTag("Respawn");
+            
             _mask = gameObject;
             _maskCollider2D = _mask.GetComponent<Collider2D>();
 
@@ -52,7 +53,7 @@ namespace Control
                 
                 // todo "kill" previous pig
 
-                _currentPig = Instantiate(pigPrefab, spawn.transform.position, Quaternion.identity, spawn.transform);
+                _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
                 _movement = _currentPig.GetComponent<Movement>();
                 _movement.enabled = false;
 

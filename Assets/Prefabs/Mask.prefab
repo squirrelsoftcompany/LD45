@@ -198,4 +198,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pigPrefab: {fileID: 1484370150005605934, guid: 29202e44cae08224898b7665bc895d91,
     type: 3}
-  spawn: {fileID: 0}
