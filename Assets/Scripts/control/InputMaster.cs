@@ -25,15 +25,15 @@ namespace control
                     ""id"": ""8444a212-b125-488e-9fd6-4631696d69b8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""7d0f517f-e0f2-4e62-854a-05c45a6118a2"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Suicide"",
@@ -41,7 +41,7 @@ namespace control
                     ""id"": ""e8e67a40-c4df-4e4b-b6fb-398d447f6371"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Combustion"",
@@ -49,7 +49,7 @@ namespace control
                     ""id"": ""4053e4b0-a84b-498e-91b3-aa67772300fe"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -57,7 +57,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""982a8d8a-920f-40d6-896f-e6e8c15f0d4a"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
@@ -68,7 +68,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""6e637896-e6d5-4d66-a2d3-ebd2ccd4104c"",
                     ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
@@ -79,7 +79,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""34744a3a-5cfe-41d2-932f-4e31d1c65905"",
                     ""path"": ""<Keyboard>/w"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
@@ -90,7 +90,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""8248522f-9f6f-4f00-8843-a3d66af95401"",
                     ""path"": ""<Keyboard>/z"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Jump"",
@@ -266,7 +266,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""b64136d3-8ee9-457d-a94c-3dc71734ee89"",
                     ""path"": ""<Keyboard>/x"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Suicide"",
@@ -277,7 +277,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""d6232445-8dde-4dc2-b7bc-e60efecf4081"",
                     ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Suicide"",
@@ -288,7 +288,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""3403f622-d901-48f0-a24d-eb3534535a32"",
                     ""path"": ""<Keyboard>/rightCtrl"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Suicide"",
@@ -299,7 +299,7 @@ namespace control
                     ""name"": """",
                     ""id"": ""c7847c85-dae7-4d63-9cd9-c922fb359798"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Combustion"",

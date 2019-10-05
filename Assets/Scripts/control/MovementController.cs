@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace control {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class MovementController : MonoBehaviour {
+    public class MovementController : MonoBehaviour, InputMaster.IPlayerActions {
         [SerializeField] private float speed;
         private InputMaster controls;
 
@@ -16,26 +17,32 @@ namespace control {
 
         private void Awake() {
             controls = new InputMaster();
-            controls.Player.Jump.performed += _ => jump();
+            controls.Player.SetCallbacks(this);
+//            controls.Player.Jump.performed += _ => jump();
 //            controls.Player.Movement.
         }
 
+//
         private void OnEnable() {
-            controls.Enable();
+            controls.Player.Enable();
         }
 
         private void OnDisable() {
-            controls.Disable();
+            controls.Player.Disable();
         }
 
-        private void jump() {
+        public void jump() {
             Debug.Log("jump!");
             // TODO
         }
 
-        private void move() {
+        public void suicide() {
+            Debug.Log("suicide");
+        }
+
+        public void move(InputAction.CallbackContext context) {
             // todo
-            Debug.Log("Move");
+            Debug.Log("Move: " + context);
         }
 
         private void FixedUpdate() {
@@ -55,6 +62,22 @@ namespace control {
 //            var moveVertical = Input.GetAxis("Jump");
 //
 //            direction = new Vector3(moveHorizontal, moveVertical, 0f).normalized;
+        }
+
+        public void OnJump(InputAction.CallbackContext context) {
+            jump();
+        }
+
+        public void OnMovement(InputAction.CallbackContext context) {
+            move(context);
+        }
+
+        public void OnSuicide(InputAction.CallbackContext context) {
+            suicide();
+        }
+
+        public void OnCombustion(InputAction.CallbackContext context) {
+            Debug.Log("combustion");
         }
     }
 }
