@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using control;
 using UnityEngine;
 
 namespace GameEventSystem
@@ -10,6 +11,7 @@ namespace GameEventSystem
         public int sentInt;
         public float sentFloat;
         public bool sentBool;
+        public MonoBehaviour sentMonoBehaviour;
 
         private readonly List<GameEventListener> _listeners = new List<GameEventListener>();
 
