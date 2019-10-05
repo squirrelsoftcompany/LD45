@@ -243,6 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3695b65e254774b9447c8b31c7fe72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pigList: {fileID: 11400000, guid: 72526fa6d90a9e544bf33e0074c525a3, type: 2}
+  attackRange: 10
 --- !u!114 &737655536163476390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,12 +252,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484370150005605934}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff639200a2044a2bb317fe27a4b366a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToBurn: 3000
+  pigList: {fileID: 11400000, guid: 72526fa6d90a9e544bf33e0074c525a3, type: 2}
 --- !u!1 &4355965012429843043
 GameObject:
   m_ObjectHideFlags: 0
