@@ -12,7 +12,6 @@ namespace Control
         // new pig creation information
         public GameObject pigPrefab;
         public GameObject spawn;
-        public bool test;
 
         // initialisation
         private GameObject _currentPig;
@@ -23,7 +22,6 @@ namespace Control
         // Start is called before the first frame update
         private void Start()
         {
-            test = false;
             _currentPig = GameObject.FindWithTag("Player");
             _mask = GameObject.FindWithTag("Mask");
         }
