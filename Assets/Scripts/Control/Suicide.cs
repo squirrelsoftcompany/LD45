@@ -65,7 +65,7 @@ namespace Control {
                 }
             }
         }
-        
+
         private void TransferComplete() {
             _mask.transform.SetParent(_maskParent.transform);
 
@@ -124,11 +124,15 @@ namespace Control {
             // "kill" previous pig
 
             // Spawn the soul of the pig
-            Instantiate(pigSoulPrefab, _currentPig.transform.position, Quaternion.identity, soulsContainer.transform);
+            var pigSoul = Instantiate(pigSoulPrefab, _currentPig.transform.position, Quaternion.identity,
+                soulsContainer.transform);
+            pigSoul.name = "Soul";
+            pigSoul.layer = LayerMask.NameToLayer("Soul");
 
             // deactivate previous controller
             pig.GetComponent<Movement>().prepareDisable();
 
+            pig.layer = LayerMask.NameToLayer("Body");
             pig.GetComponent<Attack>().enabled = false;
             pig.GetComponent<Animator>().SetBool(DEAD, true);
             pig.GetComponent<Flammable>().enabled = true;
