@@ -24,7 +24,7 @@ PrefabInstance:
     - target: {fileID: 5893123416456857141, guid: 9c574f59a31e12344b5cb9bb484d288d,
         type: 3}
       propertyPath: m_Name
-      value: FogArea
+      value: FogArea Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5893123416456857141, guid: 9c574f59a31e12344b5cb9bb484d288d,
         type: 3}

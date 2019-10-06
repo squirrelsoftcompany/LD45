@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4090725209067331462}
   - component: {fileID: 2765223241963883020}
   - component: {fileID: 2765223241963883023}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BaconSamedi Soul
   m_TagString: Player
   m_Icon: {fileID: 0}

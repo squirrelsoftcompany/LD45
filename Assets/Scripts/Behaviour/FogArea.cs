@@ -1,10 +1,11 @@
 ﻿using Control;
 using GameEventSystem;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Behaviour {
     public class FogArea : MonoBehaviour {
-        [SerializeField] private GameEvent onEnter, onExit;
+        [Required] [SerializeField] private GameEvent onEnter, onExit;
 
         private void OnTriggerEnter2D(Collider2D other) {
             var soul = other.GetComponent<SoulBehaviour>();
