@@ -9917,7 +9917,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6727222064262637544}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.001, y: -0.0026, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10078,68 +10078,6 @@ MonoBehaviour:
     responseForSentMonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
-  - name: OnMaskEnterFogArea
-    gameEvent: {fileID: 11400000, guid: f75dfd84909c2924f98f9fbf4a2f232f, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7037382385229992942}
-          m_MethodName: setFog
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-    responseForSentString:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentInt:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentFloat:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentBool:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentMonoBehaviour:
-      m_PersistentCalls:
-        m_Calls: []
-  - name: OnMaskExitFogArea
-    gameEvent: {fileID: 11400000, guid: 753d39c62940b1a46b5cb952915efbbb, type: 2}
-    response:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7037382385229992942}
-          m_MethodName: setFog
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    responseForSentString:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentInt:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentFloat:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentBool:
-      m_PersistentCalls:
-        m_Calls: []
-    responseForSentMonoBehaviour:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &7037382385229992942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10153,6 +10091,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pigPrefab: {fileID: 1484370150005605934, guid: 29202e44cae08224898b7665bc895d91,
+    type: 3}
+  pigSoulPrefab: {fileID: 2765223241963883022, guid: efe013235e24434419f205db62b0ff23,
     type: 3}
   onDeath: {fileID: 11400000, guid: 0cbec012a51eb6e47b0ba0a284cd7e96, type: 2}
   onRevive: {fileID: 11400000, guid: dbc9fd05a34c59b4ea3a139912a09bd3, type: 2}
