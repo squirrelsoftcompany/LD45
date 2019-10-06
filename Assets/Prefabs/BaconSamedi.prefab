@@ -70,6 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484370149322067135}
   - component: {fileID: 1484370149322067132}
+  - component: {fileID: 6362929051998586103}
   m_Layer: 0
   m_Name: pig
   m_TagString: Untagged
@@ -141,6 +142,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &6362929051998586103
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484370149322067133}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.006995082, y: 0.111705184}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.46, y: 0.26}
+    newSize: {x: 2.71, y: 2.45}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.37928748, y: 0.19542992}
+  m_EdgeRadius: 0
 --- !u!1 &1484370150005605934
 GameObject:
   m_ObjectHideFlags: 0
