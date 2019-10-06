@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Pigs
   m_EditorClassIdentifier: 
   pigs: []
+  levelStats: {fileID: 11400000, guid: 336d85ff4b866434d96e196e6b811b69, type: 2}
+  gameStats: {fileID: 11400000, guid: f9f783df5c7f81d43a8d6e3c64732b54, type: 2}
