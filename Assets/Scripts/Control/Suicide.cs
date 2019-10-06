@@ -25,14 +25,16 @@ namespace Control {
             _mask = gameObject;
             _maskCollider2D = _mask.GetComponent<Collider2D>();
 
-            _maskParent = _mask.transform.parent.gameObject;
-            _currentPig = _maskParent.transform.parent.gameObject;
-            _movement = _currentPig.GetComponent<Movement>();
+            var parent = _mask.transform.parent;
+            
+            _maskParent = parent ? parent.gameObject : null;
+            _currentPig = parent ? parent.parent.gameObject : null;
+            _movement = _currentPig ? _currentPig.GetComponent<Movement>() : null;
         }
 
         // Update is called once per frame
         private void Update() {
-            bool suicideRequested = Input.GetButtonUp("Suicide");
+            bool suicideRequested = Input.GetButtonUp("Suicide") || !_currentPig;
             if (!suicideRequested && !_dying) return;
 
             if (suicideRequested && !_dying)
@@ -77,13 +79,13 @@ namespace Control {
             _maskCollider2D.enabled = false;
 
             // "kill" previous pig
-            killPig(_currentPig);
+            if (_currentPig) killPig(_currentPig);
             
             initPosition = _mask.transform.position;
             animationState = 0;
             
             // create new pig...
-            var scale = _currentPig.transform.localScale;
+            var scale = _currentPig? _currentPig.transform.localScale: Vector3.one;
             _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
             _currentPig.transform.localScale = scale;
 
