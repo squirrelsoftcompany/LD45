@@ -77,6 +77,7 @@ namespace control {
 
         private void possess(GameObject spawn) {
             var piggy = Instantiate(prefabPig, spawn.transform.position, Quaternion.identity, spawn.transform);
+            piggy.transform.localScale = this.transform.lossyScale;
 
             //
             movePig = piggy.GetComponent<Movement>();
