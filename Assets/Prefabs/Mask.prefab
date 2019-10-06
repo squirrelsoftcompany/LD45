@@ -4924,10 +4924,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243946644520514316, guid: 8522f221a0533bf41a3871d359413161,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 6435fecfdf663e54d824e597bcfeefd9, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_PlayOnAwake: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -9996,7 +9996,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.46, y: 0.28}
+    oldSize: {x: 0.45, y: 0.26}
     newSize: {x: 7, y: 9.66}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -10462,6 +10462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1014413932649865562}
   - component: {fileID: 2350158572869889030}
+  - component: {fileID: 2040338841}
   m_Layer: 15
   m_Name: SoundParent
   m_TagString: Untagged
@@ -10568,20 +10569,9 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4266400626682901239}
-          m_MethodName: set_volume
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 1
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 2909430644668881285}
-          m_MethodName: set_volume
-          m_Mode: 4
+        - m_Target: {fileID: 2040338841}
+          m_MethodName: FadeMainToHappy
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10610,25 +10600,14 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4266400626682901239}
-          m_MethodName: set_volume
-          m_Mode: 4
+        - m_Target: {fileID: 2040338841}
+          m_MethodName: FadeHappyToMain
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 2909430644668881285}
-          m_MethodName: set_volume
-          m_Mode: 4
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 1
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -10652,8 +10631,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2334339109148586899}
-          m_MethodName: Play
+        - m_Target: {fileID: 2040338841}
+          m_MethodName: FadeMainToVoodoo
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10683,8 +10662,8 @@ MonoBehaviour:
     response:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2334339109148586899}
-          m_MethodName: Stop
+        - m_Target: {fileID: 2040338841}
+          m_MethodName: FadeVoodooToMain
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -10709,3 +10688,18 @@ MonoBehaviour:
     responseForSentMonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
+--- !u!114 &2040338841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8488669390190442523}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6367ba79bed9114a9ce182ff202b0f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_main: {fileID: 2909430644668881285}
+  m_voodoo: {fileID: 2334339109148586899}
+  m_happy: {fileID: 4266400626682901239}
