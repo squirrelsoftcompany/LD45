@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -65,7 +65,10 @@ namespace control {
             if (toBeDisabled) {
                 // wait for pig to touch ground, then static it
                 if (!isGroundedDeadBody()) return;
-                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                var rb2d = GetComponent<Rigidbody2D>();
+//                rb2d.bodyType = RigidbodyType2D.Kinematic;
+                rb2d.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY |
+                                   RigidbodyConstraints2D.FreezeRotation;
                 enabled = false;
                 return;
             }
