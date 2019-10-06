@@ -7,7 +7,6 @@ public class Butcher : MonoBehaviour
 
     [SerializeField] private float mAcceleration;
     [SerializeField] private float mMaxSpeed;
-    //[SerializeField] private GameObject mSpawn;
     [SerializeField] private GameObject mTarget;
     [SerializeField] private float mMaxTargetDistance;
     [SerializeField] private float mMinTargetDistance;

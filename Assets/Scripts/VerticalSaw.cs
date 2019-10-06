@@ -14,7 +14,7 @@ namespace Behaviour
         [SerializeField]
         private AnimationCurve mCurve;
         [SerializeField]
-        private int mSize;
+        private float mSize;
         [SerializeField]
         private float mDuration;
         [SerializeField]
@@ -32,7 +32,7 @@ namespace Behaviour
         void Update()
         {
             if (mActivated)
-                transform.position = new Vector3(mInitialPosition.x, mInitialPosition.y + mCurve.Evaluate(Time.time / mDuration) * mSize, mInitialPosition.z);
+                transform.position = new Vector3(mInitialPosition.x, mInitialPosition.y + mCurve.Evaluate(Time.time / mDuration) * 0.15f * mSize, mInitialPosition.z);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
