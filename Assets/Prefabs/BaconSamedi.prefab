@@ -212,13 +212,13 @@ MonoBehaviour:
   speed: 10
   jump: 5
   rayOrigin: {fileID: 2069742293}
-  rayCheckDistance: 0.1
+  rayCheckDistance: 0.05
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 12599
   rayLayerMaskDead:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 4353
 --- !u!95 &122777082768274832
 Animator:
   serializedVersion: 3
