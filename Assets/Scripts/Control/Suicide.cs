@@ -61,13 +61,14 @@ namespace Control {
             _movement.enabled = true;
         }
 
+        public float animationState = 0;
+        public Vector3 initPosition;
         private bool MaskTransferIteration()
         {
-            var position = _mask.transform.position;
-            position = Vector3.Slerp(position, _maskParent.transform.position, Time.deltaTime * 2);
-            _mask.transform.position = position;
-
-            return Vector3.Distance(position, _maskParent.transform.position) <= 0.01;
+            animationState += Time.deltaTime;
+            _mask.transform.position = initPosition + Vector3.Slerp(Vector3.zero, _maskParent.transform.position - initPosition, animationState);
+            
+            return animationState >= 1;
         }
 
         public void SuicidePig()
@@ -77,7 +78,10 @@ namespace Control {
 
             // "kill" previous pig
             killPig(_currentPig);
-
+            
+            initPosition = _mask.transform.position;
+            animationState = 0;
+            
             // create new pig...
             var scale = _currentPig.transform.localScale;
             _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
