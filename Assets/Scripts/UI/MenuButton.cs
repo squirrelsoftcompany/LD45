@@ -4,26 +4,34 @@ using UnityEngine;
 
 public class MenuButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject menu;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonUp("Pause"))
+        {
+            if (Time.timeScale > 0)
+            {
+                Pause();
+            }
+            else
+            {
+                Resume();
+            }
+        }
     }
 
     public void Pause()
     {
         Time.timeScale = 0;
+        menu.SetActive(true);
     }
     
     public void Resume()
     {
         Time.timeScale = 1;
+        menu.SetActive(false);
     }
     
     public void RestartLevel()
