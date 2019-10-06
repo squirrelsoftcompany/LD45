@@ -11,8 +11,8 @@ namespace UI
         public TextMeshProUGUI timeText;
 
         public Stats.Stats toDisplay;
-        
-        private void FixedUpdate()
+
+        public void OnGUI()
         {
             bodyCountText.text = $"{toDisplay.bodyCount:0000}";
             
