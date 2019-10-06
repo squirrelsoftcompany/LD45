@@ -126,6 +126,7 @@ namespace Control {
 
         private void removeMaskOnlyMove() {
             maskMovement.enabled = false;
+            gameObject.layer = LayerMask.NameToLayer("Mask");
             rb2D.bodyType = RigidbodyType2D.Kinematic;
             rb2D.simulated = false;
             rb2D.useFullKinematicContacts = false;
@@ -133,6 +134,7 @@ namespace Control {
 
         private void controlWithMask() {
             maskMovement.enabled = true;
+            gameObject.layer = LayerMask.NameToLayer("MaskAlone");
             rb2D.bodyType = RigidbodyType2D.Dynamic;
             rb2D.simulated = true;
             rb2D.useFullKinematicContacts = true;
