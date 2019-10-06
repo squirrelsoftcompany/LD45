@@ -32,6 +32,8 @@ namespace control {
             var res = colliderBot != null && !colliderBot.isTrigger;
             if (res) {
                 Debug.Log(gameObject.name + " is Grounded by " + colliderBot.name);
+            } else {
+                Debug.Log(gameObject.name + " is NOT grounded");
             }
 
             return res;
