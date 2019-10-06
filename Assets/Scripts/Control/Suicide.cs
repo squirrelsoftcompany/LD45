@@ -1,18 +1,33 @@
 ﻿using control;
 using GameEventSystem;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Control {
     [RequireComponent(typeof(Collider2D))]
     public class Suicide : MonoBehaviour {
+        [Title("Prefabs")]
         // new pig creation information
+        [AssetsOnly]
+        [Required]
         public GameObject pigPrefab;
+
         private GameObject _spawn;
 
+        [Required] [AssetsOnly] [SerializeField]
+        private GameObject pigSoulPrefab;
+
+        private GameObject soulsContainer;
+
+        [Title("Game Events")]
         // events
         public GameEvent onDeath;
+
         public GameEvent onRevive;
-        
+
+        [Title("For anim")] public float animationState = 0;
+        public Vector3 initPosition;
+
         // working variable
         private GameObject _currentPig;
         private GameObject _mask;
@@ -21,17 +36,17 @@ namespace Control {
         private Collider2D _maskCollider2D;
         private Movement _movement;
         private static readonly int DEAD = Animator.StringToHash("dead");
-        private bool fog;
 
         // Start is called before the first frame update
         private void Start() {
             _spawn = GameObject.FindWithTag("Respawn");
+            soulsContainer = GameObject.FindWithTag("SoulsContainer");
 
             _mask = gameObject;
             _maskCollider2D = _mask.GetComponent<Collider2D>();
 
             var parent = _mask.transform.parent;
-            
+
             _maskParent = parent ? parent.gameObject : null;
             _currentPig = parent ? parent.parent.gameObject : null;
             _movement = _currentPig ? _currentPig.GetComponent<Movement>() : null;
@@ -42,58 +57,46 @@ namespace Control {
             bool suicideRequested = Input.GetButtonUp("Suicide") || !_currentPig;
             if (!suicideRequested && !_dying) return;
 
-            if (suicideRequested && !_dying)
-            {
+            if (suicideRequested && !_dying) {
                 SuicidePig();
-            }
-            else
-            {
-                if (MaskTransferIteration())
-                {
+            } else {
+                if (MaskTransferIteration()) {
                     TransferComplete();
                 }
             }
         }
-
-        public void setFog(bool theFog) {
-            fog = theFog;
-        }
-
-        private void TransferComplete()
-        {
+        
+        private void TransferComplete() {
             _mask.transform.SetParent(_maskParent.transform);
 
             _dying = false;
             _maskCollider2D.enabled = true;
             _movement.enabled = true;
-            
+
             // send event
             onRevive.Raise();
         }
 
-        public float animationState = 0;
-        public Vector3 initPosition;
-        private bool MaskTransferIteration()
-        {
+        private bool MaskTransferIteration() {
             animationState += Time.deltaTime;
-            _mask.transform.position = initPosition + Vector3.Slerp(Vector3.zero, _maskParent.transform.position - initPosition, animationState);
-            
+            _mask.transform.position = initPosition + Vector3.Slerp(Vector3.zero,
+                                           _maskParent.transform.position - initPosition, animationState);
+
             return animationState >= 1;
         }
 
-        public void SuicidePig()
-        {
+        public void SuicidePig() {
             // deactivate happyArea triggering
             _maskCollider2D.enabled = false;
 
             // "kill" previous pig
             if (_currentPig) killPig(_currentPig);
-            
+
             initPosition = _mask.transform.position;
             animationState = 0;
-            
+
             // create new pig...
-            var scale = _currentPig? _currentPig.transform.localScale: Vector3.one;
+            var scale = _currentPig ? _currentPig.transform.localScale : Vector3.one;
             _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
             _currentPig.transform.localScale = scale;
 
@@ -102,8 +105,7 @@ namespace Control {
             _movement.enabled = false;
 
             _maskParent = null;
-            foreach (Transform child in _currentPig.transform)
-            {
+            foreach (Transform child in _currentPig.transform) {
                 if (!child.gameObject.CompareTag("MaskParent")) continue;
 
                 _maskParent = child.gameObject;
@@ -118,21 +120,18 @@ namespace Control {
         private void killPig(GameObject pig) {
             // send event
             onDeath.Raise();
-            
-            // "kill" previous pig
-            var rb2D = pig.GetComponent<Rigidbody2D>();
-            if (fog) {
-                rb2D.gravityScale = 0;
-                rb2D.bodyType = RigidbodyType2D.Static;
-                // TODO FIXME instantiate ghost right here, but let the body pig get to the floor
-            }
-            // TODO wait for pig to touch ground, then static it
 
+            // "kill" previous pig
+
+            // Spawn the soul of the pig
+            Instantiate(pigSoulPrefab, _currentPig.transform.position, Quaternion.identity, soulsContainer.transform);
+
+            // deactivate previous controller
+            pig.GetComponent<Movement>().prepareDisable();
+
+            pig.GetComponent<Attack>().enabled = false;
             pig.GetComponent<Animator>().SetBool(DEAD, true);
             pig.GetComponent<Flammable>().enabled = true;
-            pig.GetComponent<Attack>().enabled = false;
-            // deactivate previous controller
-            pig.GetComponent<Movement>().enabled = false;
         }
     }
 }

@@ -14,22 +14,36 @@ namespace control {
         private Animator animator;
         private static readonly int JUMP = Animator.StringToHash("jump");
         private static readonly int RUN = Animator.StringToHash("run");
+        private bool toBeDisabled;
 
         private void Start() {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            
+
             // initial flip if needed
             if (facingRight && Math.Sign(transform.localScale.x) < 0)
                 flip();
         }
 
         private bool isGrounded() {
-            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask).collider != null;
+            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
+                       .collider != null;
         }
 
-        void FixedUpdate() {
-            float x = Input.GetAxis("Horizontal");
+        public void prepareDisable() {
+            toBeDisabled = true;
+        }
+
+        private void FixedUpdate() {
+            if (toBeDisabled) {
+                // wait for pig to touch ground, then static it
+                if (!isGrounded()) return;
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                enabled = false;
+                return;
+            }
+
+            var x = Input.GetAxis("Horizontal");
             if (Input.GetAxis("Jump") > 0) {
                 if (isGrounded()) {
                     var rbVelocity = rb.velocity;
@@ -55,25 +69,13 @@ namespace control {
                 flip();
             }
         }
-//
-//        private void OnCollisionEnter2D(Collision2D other) {
-//            if (isGrounded()) {
-//                grounded = true;
-//            }
-//        }
-//
-//        private void OnCollisionStay2D(Collision2D other) {
-//            if (!grounded && other.gameObject.transform.position.y < transform.position.y) {
-//                grounded = isGrounded();
-//            }
-//        }
 
         private void flip() {
             facingRight = !facingRight;
 
             var transform1 = transform;
             var theScale = transform1.localScale;
-            theScale.x = Math.Abs(theScale.x) * (facingRight?1:-1);
+            theScale.x = Math.Abs(theScale.x) * (facingRight ? 1 : -1);
             transform1.localScale = theScale;
         }
     }
