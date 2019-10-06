@@ -3416,6 +3416,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2126587797752530865}
     m_Modifications:
+    - target: {fileID: 6853562240684317783, guid: 746f19d83134e5c4291d8d687acfa6e9,
+        type: 3}
+      propertyPath: toDisplay
+      value: 
+      objectReference: {fileID: 11400000, guid: f9f783df5c7f81d43a8d6e3c64732b54,
+        type: 2}
     - target: {fileID: 9205334788353634757, guid: 746f19d83134e5c4291d8d687acfa6e9,
         type: 3}
       propertyPath: m_Name
@@ -3526,11 +3532,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9205334788233749848, guid: 746f19d83134e5c4291d8d687acfa6e9,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9205334788233749850, guid: 746f19d83134e5c4291d8d687acfa6e9,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -3556,7 +3557,7 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 258.45
       objectReference: {fileID: 0}
-    - target: {fileID: 9205334788995948202, guid: 746f19d83134e5c4291d8d687acfa6e9,
+    - target: {fileID: 9205334788233749848, guid: 746f19d83134e5c4291d8d687acfa6e9,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3585,6 +3586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSize
       value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205334788995948202, guid: 746f19d83134e5c4291d8d687acfa6e9,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 746f19d83134e5c4291d8d687acfa6e9, type: 3}
