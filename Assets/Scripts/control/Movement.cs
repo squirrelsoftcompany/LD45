@@ -26,8 +26,15 @@ namespace control {
         }
 
         private bool isGrounded() {
-            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
-                       .collider != null;
+            var colliderBot = Physics2D
+                .Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
+                .collider;
+            var res = colliderBot != null && !colliderBot.isTrigger;
+            if (res) {
+                Debug.Log(gameObject.name + " is Grounded by " + colliderBot.name);
+            }
+
+            return res;
         }
 
         public void prepareDisable() {
