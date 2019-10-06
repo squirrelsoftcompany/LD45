@@ -54,7 +54,7 @@ namespace Control {
 
         // Update is called once per frame
         private void Update() {
-            bool suicideRequested = Input.GetButtonUp("Suicide") || !_currentPig;
+            var suicideRequested = Input.GetButtonUp("Suicide"); // || !_currentPig;
             if (!suicideRequested && !_dying) return;
 
             if (suicideRequested && !_dying) {
