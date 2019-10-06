@@ -9904,6 +9904,7 @@ GameObject:
   - component: {fileID: 8104442692835928330}
   - component: {fileID: 7037382385229992942}
   - component: {fileID: 4756022447088322687}
+  - component: {fileID: 31665217464304317}
   m_Layer: 15
   m_Name: Mask
   m_TagString: Mask
@@ -10174,6 +10175,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+--- !u!50 &31665217464304317
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6727222064262637544}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 25
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7236366469786100475
 GameObject:
   m_ObjectHideFlags: 0
