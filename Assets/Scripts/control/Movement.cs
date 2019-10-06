@@ -8,6 +8,7 @@ namespace control {
         public float jump;
         public GameObject rayOrigin;
         public float rayCheckDistance;
+        public LayerMask rayLayerMask;
         private Rigidbody2D rb;
         private bool facingRight = true;
         private Animator animator;
@@ -24,7 +25,7 @@ namespace control {
         }
 
         private bool isGrounded() {
-            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance).collider != null;
+            return Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask).collider != null;
         }
 
         void FixedUpdate() {

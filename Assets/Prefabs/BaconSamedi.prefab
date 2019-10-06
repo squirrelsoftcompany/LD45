@@ -213,6 +213,9 @@ MonoBehaviour:
   jump: 5
   rayOrigin: {fileID: 2069742293}
   rayCheckDistance: 0.1
+  rayLayerMask:
+    serializedVersion: 2
+    m_Bits: 311
 --- !u!95 &122777082768274832
 Animator:
   serializedVersion: 3
