@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace control {
@@ -6,7 +7,7 @@ namespace control {
     public class Movement : MonoBehaviour {
         public float speed;
         public float jump;
-        public GameObject rayOrigin;
+        [SceneObjectsOnly] [Required] public GameObject rayOrigin, bottomLeft, bottomRight;
         public float rayCheckDistance;
         public LayerMask rayLayerMask;
         public LayerMask rayLayerMaskDead;
@@ -30,6 +31,22 @@ namespace control {
             var colliderBot = Physics2D
                 .Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
                 .collider;
+            if (colliderBot != null) {
+                return true;
+            }
+
+            // left
+            colliderBot = Physics2D.Raycast(bottomLeft.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
+                .collider;
+            if (colliderBot != null) {
+                return true;
+            }
+
+            // right
+            colliderBot = Physics2D
+                .Raycast(bottomRight.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
+                .collider;
+
             return colliderBot != null;
         }
 
