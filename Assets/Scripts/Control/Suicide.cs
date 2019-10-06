@@ -34,7 +34,9 @@ namespace Control {
         private GameObject _maskParent;
         private bool _dying;
         private Collider2D _maskCollider2D;
+        private Rigidbody2D rb2D;
         private Movement _movement;
+        private MaskMovement maskMovement;
         private static readonly int DEAD = Animator.StringToHash("dead");
 
         // Start is called before the first frame update
@@ -44,6 +46,8 @@ namespace Control {
 
             _mask = gameObject;
             _maskCollider2D = _mask.GetComponent<Collider2D>();
+            maskMovement = GetComponent<MaskMovement>();
+            rb2D = GetComponent<Rigidbody2D>();
 
             var parent = _mask.transform.parent;
 
@@ -92,6 +96,9 @@ namespace Control {
             // "kill" previous pig
             if (_currentPig) killPig(_currentPig);
 
+            // remove mask only movement
+            removeMaskOnlyMove();
+
             initPosition = _mask.transform.position;
             animationState = 0;
 
@@ -115,6 +122,20 @@ namespace Control {
             Debug.Assert(_maskParent != null, "no mask parent found");
 
             _dying = true;
+        }
+
+        private void removeMaskOnlyMove() {
+            maskMovement.enabled = false;
+            rb2D.bodyType = RigidbodyType2D.Kinematic;
+            rb2D.simulated = false;
+            rb2D.useFullKinematicContacts = false;
+        }
+
+        private void controlWithMask() {
+            maskMovement.enabled = true;
+            rb2D.bodyType = RigidbodyType2D.Dynamic;
+            rb2D.simulated = true;
+            rb2D.useFullKinematicContacts = true;
         }
 
         private void killPig(GameObject pig) {
