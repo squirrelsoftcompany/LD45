@@ -159,8 +159,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 0
     m_RotationOrder: 4
-  mSize: 2
+  mSize: 4
   mDuration: 1
+  mActivated: 1
 --- !u!61 &8436871678438396738
 BoxCollider2D:
   m_ObjectHideFlags: 0
