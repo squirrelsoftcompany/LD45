@@ -11,12 +11,9 @@ namespace control {
             animator = GetComponent<Animator>();
         }
 
-        private void OnEnable() {
-            pigList.add(GetComponent<Flammable>());
-        }
-
-        private void OnDisable() {
-            pigList.remove(GetComponent<Flammable>());
+        public void startFlammable()
+        {
+            pigList.add(this);
         }
 
         public void startFire() {
@@ -24,8 +21,12 @@ namespace control {
         }
 
         public void endBurn() {
-            pigList.remove(this);
             Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            pigList.remove(this);
         }
     }
 }

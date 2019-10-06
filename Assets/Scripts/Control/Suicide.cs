@@ -139,7 +139,9 @@ namespace Control {
             pig.GetComponent<Movement>().prepareDisable();
             pig.GetComponent<Attack>().enabled = false;
             pig.GetComponent<Animator>().SetBool(DEAD, true);
-            pig.GetComponent<Flammable>().enabled = true;
+            var flammable = pig.GetComponent<Flammable>();
+            flammable.enabled = true;
+            flammable.startFlammable();
         }
     }
 }
