@@ -17,6 +17,10 @@ namespace control {
         private void Start() {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            
+            // initial flip if needed
+            if (facingRight && Math.Sign(transform.localScale.x) < 0)
+                flip();
         }
 
         private bool isGrounded() {
