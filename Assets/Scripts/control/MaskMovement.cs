@@ -13,8 +13,8 @@ namespace control {
         private void FixedUpdate() {
             var vectorDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
 
-            var theSpeed = Time.fixedDeltaTime * speed;
-            rb2D.velocity = vectorDir * theSpeed;
+//            var theSpeed = Time.fixedDeltaTime * speed;
+            rb2D.velocity = vectorDir * speed;//* theSpeed;
         }
     }
 }
