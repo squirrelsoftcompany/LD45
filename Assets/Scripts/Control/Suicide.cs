@@ -1,4 +1,5 @@
 ﻿using control;
+using GameEventSystem;
 using UnityEngine;
 
 namespace Control {
@@ -8,6 +9,10 @@ namespace Control {
         public GameObject pigPrefab;
         private GameObject _spawn;
 
+        // events
+        public GameEvent onDeath;
+        public GameEvent onRevive;
+        
         // working variable
         private GameObject _currentPig;
         private GameObject _mask;
@@ -61,6 +66,9 @@ namespace Control {
             _dying = false;
             _maskCollider2D.enabled = true;
             _movement.enabled = true;
+            
+            // send event
+            onRevive.Raise();
         }
 
         public float animationState = 0;
@@ -108,6 +116,9 @@ namespace Control {
         }
 
         private void killPig(GameObject pig) {
+            // send event
+            onDeath.Raise();
+            
             // "kill" previous pig
             var rb2D = pig.GetComponent<Rigidbody2D>();
             if (fog) {
