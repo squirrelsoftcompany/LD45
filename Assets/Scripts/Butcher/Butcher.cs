@@ -10,15 +10,21 @@ public class Butcher : MonoBehaviour
     //[SerializeField] private GameObject mSpawn;
     [SerializeField] private GameObject mTarget;
     [SerializeField] private float mMaxTargetDistance;
+    [SerializeField] private float mMinTargetDistance;
 
+    private Animator mAnimator;
     private Vector3 mDirection = Vector3.zero;
     private Rigidbody2D mRb2D;
     private bool mSlowed = false;
     private GameObject mCleaver;
 
+    private static readonly int ATTACK = Animator.StringToHash("Attack");
+    private static readonly int WALK = Animator.StringToHash("Walk");
+
     // Start is called before the first frame update
     void Start()
     {
+        mAnimator = GetComponent<Animator>();
         mRb2D = GetComponent<Rigidbody2D>();
         mCleaver = transform.Find("Cleaver").gameObject;
     }
@@ -27,11 +33,12 @@ public class Butcher : MonoBehaviour
     {
         Vector3 lTranslationSecond = mDirection * mAcceleration;
         mRb2D.AddForce(Time.fixedDeltaTime * lTranslationSecond);
-        float lCurrentMaxSpeed = (mSlowed ? mMaxSpeed * 0.5f : mMaxSpeed);
+        float lCurrentMaxSpeed = mMaxSpeed;// (mSlowed ? mMaxSpeed * 0.5f : mMaxSpeed);
         if (Mathf.Abs(mRb2D.velocity.x) > lCurrentMaxSpeed)
         {
             mRb2D.velocity = new Vector2(mRb2D.velocity.x * lCurrentMaxSpeed, mRb2D.velocity.y);
         }
+        transform.localScale = new Vector3(mRb2D.velocity.x < 0.0f ? 1.0f : -1.0f, transform.localScale.y, transform.localScale.z);
     }
 
     // Update is called once per frame
@@ -56,20 +63,26 @@ public class Butcher : MonoBehaviour
         }
 
         // Is it close enought ?
-        float lMinDistance = 1.4f;
-        if (lVisible && lDistanceFromTarget < mMaxTargetDistance && lDistanceFromTarget > lMinDistance)
+        if (lVisible && lDistanceFromTarget < mMaxTargetDistance && lDistanceFromTarget > mMinTargetDistance)
         {
             mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
+            mAnimator.SetBool(WALK, true);
         }
         else
         {
             mDirection = Vector3.zero;
+            mAnimator.SetBool(WALK, false);
         }
 
         //If very close, try to hit the pig
-        if (lDistanceFromTarget <= lMinDistance + Mathf.Epsilon)
+        if (lDistanceFromTarget <= mMinTargetDistance + Mathf.Epsilon)
         {
+            mAnimator.SetBool(ATTACK, true);
             //Trigger attack animation -> active the cleaver child object
+        }
+        else
+        {
+            mAnimator.SetBool(ATTACK, false);
         }
     }
 
