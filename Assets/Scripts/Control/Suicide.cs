@@ -129,10 +129,9 @@ namespace Control {
             pigSoul.name = "Soul";
             pigSoul.layer = LayerMask.NameToLayer("Soul");
 
+            pig.layer = LayerMask.NameToLayer("Body");
             // deactivate previous controller
             pig.GetComponent<Movement>().prepareDisable();
-
-            pig.layer = LayerMask.NameToLayer("Body");
             pig.GetComponent<Attack>().enabled = false;
             pig.GetComponent<Animator>().SetBool(DEAD, true);
             pig.GetComponent<Flammable>().enabled = true;

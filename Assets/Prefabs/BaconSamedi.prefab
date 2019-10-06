@@ -216,6 +216,9 @@ MonoBehaviour:
   rayLayerMask:
     serializedVersion: 2
     m_Bits: 12599
+  rayLayerMaskDead:
+    serializedVersion: 2
+    m_Bits: 257
 --- !u!95 &122777082768274832
 Animator:
   serializedVersion: 3

@@ -25,7 +25,7 @@ namespace Behaviour {
 
             if (fog) {
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-                GetComponent<Collider2D>().isTrigger = false;
+                gameObject.layer = LayerMask.NameToLayer("Soul");
                 enabled = false;
             }
         }

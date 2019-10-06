@@ -9,6 +9,7 @@ namespace control {
         public GameObject rayOrigin;
         public float rayCheckDistance;
         public LayerMask rayLayerMask;
+        public LayerMask rayLayerMaskDead;
         private Rigidbody2D rb;
         private bool facingRight = true;
         private Animator animator;
@@ -29,14 +30,14 @@ namespace control {
             var colliderBot = Physics2D
                 .Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMask)
                 .collider;
-            var res = colliderBot != null && !colliderBot.isTrigger;
-            if (res) {
-                Debug.Log(gameObject.name + " is Grounded by " + colliderBot.name);
-            } else {
-                Debug.Log(gameObject.name + " is NOT grounded");
-            }
+            return colliderBot != null;
+        }
 
-            return res;
+        private bool isGroundedDeadBody() {
+            var colliderBot = Physics2D
+                .Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance, rayLayerMaskDead)
+                .collider;
+            return colliderBot != null;
         }
 
         public void prepareDisable() {
@@ -46,7 +47,7 @@ namespace control {
         private void FixedUpdate() {
             if (toBeDisabled) {
                 // wait for pig to touch ground, then static it
-                if (!isGrounded()) return;
+                if (!isGroundedDeadBody()) return;
                 GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                 enabled = false;
                 return;
