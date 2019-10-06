@@ -128,10 +128,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 59
-        width: 46
-        height: 26
+        width: 45
+        height: 25
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,7 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09c5e437cdfd70f45b8b6e60400d655e
+      spriteID: 2c0a0e9fdda64cc42bd28362a32632bc
       internalID: -8088984804644296980
       vertices: []
       indices: 
@@ -149,10 +149,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 46
+        x: 47
         y: 59
-        width: 46
-        height: 26
+        width: 45
+        height: 25
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 784c11687cee33049866a43961f24b8f
+      spriteID: 9cc7a05321ae79748bb5e441fd28482b
       internalID: 3881799165406690314
       vertices: []
       indices: 
@@ -170,10 +170,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 92
+        x: 93
         y: 59
-        width: 46
-        height: 26
+        width: 45
+        height: 25
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,7 +181,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15e3aaf316590094697ec06711c7db23
+      spriteID: dc3955f5084668842954fcbc22960d5e
       internalID: 4138357774737159530
       vertices: []
       indices: 
@@ -191,10 +191,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 138
+        x: 139
         y: 65
-        width: 46
-        height: 17
+        width: 45
+        height: 19
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7d0c5c95a31b374dabf9d11699035b5
+      spriteID: b1dbe4e0c59567b4db70b63d50eec36a
       internalID: 8528767217124559169
       vertices: []
       indices: 
@@ -212,10 +212,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 184
-        y: 56.666664
-        width: 46.2
-        height: 28.333334
+        x: 185
+        y: 57
+        width: 45
+        height: 27
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -223,7 +223,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f03726c588f798b4692306a64a260c17
+      spriteID: b36819b48a23e92459132ea7eefa2200
       internalID: 4241408413201724458
       vertices: []
       indices: 
@@ -233,10 +233,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 29
-        width: 46
-        height: 28
+        x: 1
+        y: 30
+        width: 45
+        height: 26
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -244,7 +244,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ea99c74cb9f99a4ba511bd527b5d0fe
+      spriteID: be8d54d349ef0084fac67989676fd6af
       internalID: 4080714423435747588
       vertices: []
       indices: 
@@ -254,10 +254,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_6
       rect:
         serializedVersion: 2
-        x: 46
-        y: 28.666666
-        width: 46.2
-        height: 28.333334
+        x: 47
+        y: 30
+        width: 45
+        height: 26
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,7 +265,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e573f69325c9b14d93f81b8ead34bc3
+      spriteID: 57850cfc29c719647b81e52e1d9f98c2
       internalID: 6271325299845459553
       vertices: []
       indices: 
@@ -275,10 +275,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_7
       rect:
         serializedVersion: 2
-        x: 92
-        y: 29
-        width: 46
-        height: 28
+        x: 93
+        y: 30
+        width: 45
+        height: 26
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -286,7 +286,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f57c538e1e3c0d34a927ddc257be9887
+      spriteID: 0498f686b922239419ed5ce8e559ff46
       internalID: 3213010221617413633
       vertices: []
       indices: 
@@ -296,10 +296,10 @@ TextureImporter:
       name: BaconSamediSpriteSheet_8
       rect:
         serializedVersion: 2
-        x: 92
-        y: 1
-        width: 46
-        height: 28
+        x: 93
+        y: 2
+        width: 45
+        height: 26
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,7 +307,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca8d94c3c6001a2439f1e11efab577b2
+      spriteID: bb6706b7cfd863945a2ddfc0bd58a0c4
       internalID: -6710977326837717648
       vertices: []
       indices: 
