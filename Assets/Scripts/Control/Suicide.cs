@@ -109,6 +109,7 @@ namespace Control {
             rb2D.useFullKinematicContacts = true;
             _maskCollider2D.enabled = true;
             possess.canPossess = true;
+            _mask.transform.SetParent(null);
         }
 
         private void removeMaskOnlyMove() {
