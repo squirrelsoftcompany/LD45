@@ -23,8 +23,6 @@ namespace Control {
         // events
         public GameEvent onDeath;
 
-        public GameEvent onRevive;
-
         [Title("For anim")] public float animationState = 0;
         public Vector3 initPosition;
 
@@ -37,12 +35,16 @@ namespace Control {
         private Rigidbody2D rb2D;
         private Movement _movement;
         private MaskMovement maskMovement;
+        private Possess possess;
         private static readonly int DEAD = Animator.StringToHash("dead");
+
+        public bool canSuicide = false;
 
         // Start is called before the first frame update
         private void Start() {
             _spawn = GameObject.FindWithTag("Respawn");
             soulsContainer = GameObject.FindWithTag("SoulsContainer");
+            possess = GetComponent<Possess>();
 
             _mask = gameObject;
             _maskCollider2D = _mask.GetComponent<Collider2D>();
@@ -59,69 +61,54 @@ namespace Control {
         // Update is called once per frame
         private void Update() {
             var suicideRequested = Input.GetButtonUp("Suicide"); // || !_currentPig;
-            if (!suicideRequested && !_dying) return;
+            if (!suicideRequested) return;
 
-            if (suicideRequested && !_dying) {
+            if (canSuicide) {
                 SuicidePig();
-            } else {
-                if (MaskTransferIteration()) {
-                    TransferComplete();
-                }
             }
         }
 
-        private void TransferComplete() {
-            _mask.transform.SetParent(_maskParent.transform);
+//        private void TransferComplete() {
+//            _mask.transform.SetParent(_maskParent.transform);
+//
+//            _dying = false;
+//            _maskCollider2D.enabled = true;
+//            _movement.enabled = true;
+//
+//            // send event
+//            onRevive.Raise();
+//        }
 
-            _dying = false;
-            _maskCollider2D.enabled = true;
-            _movement.enabled = true;
-
-            // send event
-            onRevive.Raise();
-        }
-
-        private bool MaskTransferIteration() {
-            animationState += Time.deltaTime;
-            _mask.transform.position = initPosition + Vector3.Slerp(Vector3.zero,
-                                           _maskParent.transform.position - initPosition, animationState);
-
-            return animationState >= 1;
-        }
+//        private bool MaskTransferIteration() {
+//            animationState += Time.deltaTime;
+//            _mask.transform.position = initPosition + Vector3.Slerp(Vector3.zero,
+//                                           _maskParent.transform.position - initPosition, animationState);
+//
+//            return animationState >= 1;
+//        }
 
         public void SuicidePig() {
+            canSuicide = false;
             // deactivate happyArea triggering
-            _maskCollider2D.enabled = false;
 
             // "kill" previous pig
-            if (_currentPig) killPig(_currentPig);
+            killPig();
 
             // remove mask only movement
-            removeMaskOnlyMove();
 
-            initPosition = _mask.transform.position;
-            animationState = 0;
+//            removeMaskOnlyMove();
+            controlWithMaskOnly();
+        }
 
-            // create new pig...
-            var scale = _currentPig ? _currentPig.transform.localScale : Vector3.one;
-            _currentPig = Instantiate(pigPrefab, _spawn.transform.position, Quaternion.identity, _spawn.transform);
-            _currentPig.transform.localScale = scale;
 
-            // and retrieve some information
-            _movement = _currentPig.GetComponent<Movement>();
-            _movement.enabled = false;
-
-            _maskParent = null;
-            foreach (Transform child in _currentPig.transform) {
-                if (!child.gameObject.CompareTag("MaskParent")) continue;
-
-                _maskParent = child.gameObject;
-                break;
-            }
-
-            Debug.Assert(_maskParent != null, "no mask parent found");
-
-            _dying = true;
+        private void controlWithMaskOnly() {
+            maskMovement.enabled = true;
+            gameObject.layer = LayerMask.NameToLayer("MaskAlone");
+            rb2D.bodyType = RigidbodyType2D.Dynamic;
+            rb2D.simulated = true;
+            rb2D.useFullKinematicContacts = true;
+            _maskCollider2D.enabled = true;
+            possess.canPossess = true;
         }
 
         private void removeMaskOnlyMove() {
@@ -132,22 +119,17 @@ namespace Control {
             rb2D.useFullKinematicContacts = false;
         }
 
-        private void controlWithMask() {
-            maskMovement.enabled = true;
-            gameObject.layer = LayerMask.NameToLayer("MaskAlone");
-            rb2D.bodyType = RigidbodyType2D.Dynamic;
-            rb2D.simulated = true;
-            rb2D.useFullKinematicContacts = true;
-        }
-
-        private void killPig(GameObject pig) {
+        private void killPig() {
             // send event
             onDeath.Raise();
+
+            // Find pig
+            var pig = transform.parent.parent.gameObject;
 
             // "kill" previous pig
 
             // Spawn the soul of the pig
-            var pigSoul = Instantiate(pigSoulPrefab, _currentPig.transform.position, Quaternion.identity,
+            var pigSoul = Instantiate(pigSoulPrefab, pig.transform.position, Quaternion.identity,
                 soulsContainer.transform);
             pigSoul.name = "Soul";
             pigSoul.layer = LayerMask.NameToLayer("DisembodiedSoul");
