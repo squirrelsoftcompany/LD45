@@ -11,6 +11,7 @@ public class Butcher : MonoBehaviour
     [SerializeField] private GameObject mTarget;
     [SerializeField] private float mMaxTargetDistance;
     [SerializeField] private float mMinTargetDistance;
+    [SerializeField] [Range(0, 1.0f)] private float mSlowFactor;
 
     private Animator mAnimator;
     private Vector3 mDirection = Vector3.zero;
@@ -33,7 +34,7 @@ public class Butcher : MonoBehaviour
     {
         Vector3 lTranslationSecond = mDirection * mAcceleration;
         mRb2D.AddForce(Time.fixedDeltaTime * lTranslationSecond);
-        float lCurrentMaxSpeed = mMaxSpeed;// (mSlowed ? mMaxSpeed * 0.5f : mMaxSpeed);
+        float lCurrentMaxSpeed = (mSlowed ? mMaxSpeed * mSlowFactor : mMaxSpeed);
         if (Mathf.Abs(mRb2D.velocity.x) > lCurrentMaxSpeed)
         {
             mRb2D.velocity = new Vector2(mRb2D.velocity.x * lCurrentMaxSpeed, mRb2D.velocity.y);
@@ -78,7 +79,6 @@ public class Butcher : MonoBehaviour
         if (lDistanceFromTarget <= mMinTargetDistance + Mathf.Epsilon)
         {
             mAnimator.SetBool(ATTACK, true);
-            //Trigger attack animation -> active the cleaver child object
         }
         else
         {
@@ -88,7 +88,7 @@ public class Butcher : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 12) // 12 is body layer
+        if (other.gameObject.CompareTag("Pig"))
         {
             mSlowed = true;
         }
@@ -96,7 +96,7 @@ public class Butcher : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.layer == 12)// 12 is body layer
+        if (other.gameObject.CompareTag("Pig"))
         {
             mSlowed = false;
         }
