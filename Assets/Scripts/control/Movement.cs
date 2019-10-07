@@ -74,7 +74,7 @@ namespace control {
             }
 
             var x = Input.GetAxis("Horizontal");
-            if (Input.GetAxis("Jump") > 0) {
+            if (Input.GetButtonDown("Jump")) {
                 if (isGrounded()) {
                     var rbVelocity = rb.velocity;
                     rbVelocity.y = jump;
