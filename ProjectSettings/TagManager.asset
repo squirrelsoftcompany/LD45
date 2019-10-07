@@ -8,6 +8,7 @@ TagManager:
   - MaskParent
   - SoulsContainer
   - Pig
+  - Soul
   layers:
   - Default
   - TransparentFX

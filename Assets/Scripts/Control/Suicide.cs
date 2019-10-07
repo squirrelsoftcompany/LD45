@@ -133,6 +133,7 @@ namespace Control {
             var pigSoul = Instantiate(pigSoulPrefab, pig.transform.position, Quaternion.identity,
                 soulsContainer.transform);
             pigSoul.name = "Soul";
+            pigSoul.tag = "Soul";
             pigSoul.layer = LayerMask.NameToLayer("DisembodiedSoul");
 
             pig.layer = LayerMask.NameToLayer("Body");
