@@ -354,6 +354,8 @@ MonoBehaviour:
   finalScreen: {fileID: 7820402702404200030}
   finalSentence: {fileID: 5362449049857744001}
   nextButtonText: {fileID: 7820402701472859800}
+  levelStats: {fileID: 11400000, guid: 336d85ff4b866434d96e196e6b811b69, type: 2}
+  gameStats: {fileID: 11400000, guid: f9f783df5c7f81d43a8d6e3c64732b54, type: 2}
 --- !u!114 &1374249645001689229
 MonoBehaviour:
   m_ObjectHideFlags: 0
