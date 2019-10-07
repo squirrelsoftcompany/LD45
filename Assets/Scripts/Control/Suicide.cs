@@ -136,7 +136,7 @@ namespace Control {
             pigSoul.name = "Soul";
             pigSoul.tag = "Soul";
             pigSoul.layer = LayerMask.NameToLayer("DisembodiedSoul");
-            pigSoul.GetComponent<Flammable>().startFlammable();
+            pigSoul.GetComponent<Flammable>().startFlammable(false);
 
             pig.layer = LayerMask.NameToLayer("Body");
             pig.tag = "Body";
@@ -146,7 +146,7 @@ namespace Control {
             pig.GetComponent<Animator>().SetBool(DEAD, true);
             var flammable = pig.GetComponent<Flammable>();
             flammable.enabled = true;
-            flammable.startFlammable();
+            flammable.startFlammable(true);
         }
     }
 }
