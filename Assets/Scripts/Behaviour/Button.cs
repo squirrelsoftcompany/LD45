@@ -12,7 +12,7 @@ namespace Behaviour
             public abstract void UnbuttonateMe();
         }
 
-        public Buttonable buttonable;
+        public Buttonable[] buttonable;
         private Animator _anim;
         
         private static readonly int Down = Animator.StringToHash("Down");
@@ -31,7 +31,8 @@ namespace Behaviour
             if (_triggerCount > 1) return;
             
             _anim.SetTrigger(Down);
-            buttonable?.ButtonateMe();
+            foreach (Buttonable button in buttonable)
+                button?.ButtonateMe();
         }
 
         private void OnTriggerExit2D(Collider2D other)
@@ -40,7 +41,8 @@ namespace Behaviour
             if (_triggerCount > 0) return;
             
             _anim.SetTrigger(Default);
-            buttonable?.UnbuttonateMe();
+            foreach(Buttonable button in buttonable)
+                button?.UnbuttonateMe();
         }
     }
 }
