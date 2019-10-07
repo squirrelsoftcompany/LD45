@@ -16,7 +16,10 @@ public class PigList : ScriptableObject {
 
     public void add(Flammable flammable, bool isABody) {
         pigs.Add(flammable);
-        flammable.name = "Flammable (" + levelStats.bodyCount + ")";
+        flammable.name = (isABody
+                             ? "Body"
+                             : "Soul") +
+                         " (" + levelStats.bodyCount + ")";
 
         if (isABody) {
             levelStats.bodyCount++;
