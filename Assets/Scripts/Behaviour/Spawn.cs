@@ -11,6 +11,8 @@ namespace Behaviour {
         [Required] [SceneObjectsOnly] [SerializeField]
         private GameObject instructionText;
 
+        [Required] [SerializeField] private Light lightSpawn;
+
         public bool Active => active;
 
         private CircleCollider2D circleCollider2D;
@@ -39,6 +41,7 @@ namespace Behaviour {
             // A mask alone enters this area so light it up!
             instructionText.SetActive(true);
             controller.lightItUp();
+            lightSpawn.enabled = true;
             active = true;
         }
 
@@ -46,6 +49,7 @@ namespace Behaviour {
             // 
             instructionText.SetActive(false);
             controller.switchOff();
+            lightSpawn.enabled = false;
             active = false;
         }
     }
