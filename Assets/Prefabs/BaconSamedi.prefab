@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5983757661607385984}
   - component: {fileID: 737655536163476390}
   - component: {fileID: 7149785685987006558}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: BaconSamedi
   m_TagString: Player
   m_Icon: {fileID: 0}
