@@ -11,9 +11,8 @@ namespace control {
             animator = GetComponent<Animator>();
         }
 
-        public void startFlammable()
-        {
-            pigList.add(this);
+        public void startFlammable(bool isABody) {
+            pigList.add(this, isABody);
         }
 
         public void startFire() {
@@ -24,8 +23,7 @@ namespace control {
             Destroy(gameObject);
         }
 
-        private void OnDestroy()
-        {
+        private void OnDestroy() {
             pigList.remove(this);
         }
     }
