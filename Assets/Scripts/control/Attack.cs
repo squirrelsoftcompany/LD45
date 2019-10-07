@@ -1,15 +1,44 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace control {
     public class Attack : MonoBehaviour {
         [SerializeField] private PigList pigList;
         [SerializeField] private float attackRange;
 
+        private Flammable flammableClosest;
+
         // Update is called once per frame
         private void Update() {
+            var closest = getClosestRangedPig();
+            if (!closest) {
+                if (flammableClosest != null) {
+                    flammableClosest.deselect();
+                }
+            }
+
+            if (flammableClosest != closest) {
+                if (flammableClosest != null) {
+                    flammableClosest.deselect();
+                }
+
+                flammableClosest = closest;
+                flammableClosest.select();
+            }
+
             if (Input.GetKeyDown(KeyCode.E)) {
                 // kill it with fire!!
-                getClosestRangedPig()?.startFire();
+                closest.startFire();
+            }
+        }
+
+        private void OnDrawGizmos() {
+            if (enabled) {
+                var color = Color.cyan;
+                color.a = 0.3f;
+                Gizmos.color = color;
+                var position1 = transform.position;
+                Gizmos.DrawSphere(position1, attackRange);
             }
         }
 
