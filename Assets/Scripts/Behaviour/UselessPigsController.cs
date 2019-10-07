@@ -48,5 +48,13 @@ namespace Behaviour {
                 yield return new WaitForSeconds(Random.value);
             }
         }
+
+        public void switchOff() {
+            throw new System.NotImplementedException();
+        }
+
+        public void lightItUp() {
+            throw new System.NotImplementedException();
+        }
     }
 }

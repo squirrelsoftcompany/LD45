@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Behaviour;
 using Control;
 using GameEventSystem;
 using Sirenix.OdinInspector;
@@ -7,12 +10,10 @@ using UnityEngine;
 namespace control {
     public class Possess : MonoBehaviour {
         [Required] [SceneObjectsOnly] [SerializeField]
-        private GameObject[] spawns;
+        private IEnumerable<Spawn> spawns;
 
         [AssetsOnly] [Required] [SerializeField]
         private GameObject prefabPig;
-
-        [SerializeField] private float range;
 
         [Required] [AssetsOnly] public GameEvent onRevive;
 
@@ -32,8 +33,9 @@ namespace control {
             maskCollider2D = GetComponent<Collider2D>();
             suicide = GetComponent<Suicide>();
 
-            spawns = GameObject.FindGameObjectsWithTag("Respawn");
-            if (spawns.Length == 0) {
+            spawns = GameObject.FindGameObjectsWithTag("Respawn")
+                .Select(go => go.GetComponent<Spawn>());
+            if (!spawns.Any()) {
                 Debug.LogError(
                     "Don't forget to mark spawn points with tag Respawn!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'");
             }
@@ -41,25 +43,26 @@ namespace control {
 
         // Update is called once per frame
         private void Update() {
-            if (Input.GetButtonDown("Suicide") && canPossess) {
-                // Possess
-                var closestSpawn = getClosestRangedSpawn();
-                if (closestSpawn) {
-                    possess(closestSpawn);
-                    canPossess = false;
-                }
-            }
+            if (!Input.GetButtonDown("Suicide") || !canPossess) return;
+
+            // We want to POSSESS! (and we can)
+            // Possess
+            var closestSpawn = getClosestRangedSpawn();
+            if (!closestSpawn) return;
+            // We have a spawn close to us 
+            possess(closestSpawn.gameObject);
+            canPossess = false;
         }
 
-        private GameObject getClosestRangedSpawn() {
-            GameObject best = null;
+        private Spawn getClosestRangedSpawn() {
+            Spawn best = null;
             var closestDistSqr = Mathf.Infinity;
             var currentPosition = transform.position;
             foreach (var spawn in spawns) {
                 var directionToTarget = spawn.transform.position - currentPosition;
                 var distSqrtToTarget = directionToTarget.sqrMagnitude;
                 if (!(distSqrtToTarget < closestDistSqr) ||
-                    !(distSqrtToTarget < range * range)) continue;
+                    !(distSqrtToTarget < spawn.Range * spawn.Range)) continue;
                 closestDistSqr = distSqrtToTarget;
                 best = spawn;
             }
