@@ -56,17 +56,14 @@ namespace control {
 
         private Spawn getClosestRangedSpawn() {
             Spawn best = null;
-            var closestDistSqr = Mathf.Infinity;
+            var closestDist = Mathf.Infinity;
             var currentPosition = transform.position;
             foreach (var spawn in spawns) {
-                var directionToTarget = spawn.transform.position - currentPosition;
-                var distSqrtToTarget = directionToTarget.sqrMagnitude;
-                if (!(distSqrtToTarget < closestDistSqr) ||
-                    !(distSqrtToTarget < spawn.Range * spawn.Range)) continue;
-                closestDistSqr = distSqrtToTarget;
+                var distance = Vector2.Distance(spawn.transform.position, currentPosition);
+                if (!(distance < closestDist) || !(distance < spawn.Range)) continue;
+                closestDist = distance;
                 best = spawn;
             }
-
             return best;
         }
 
