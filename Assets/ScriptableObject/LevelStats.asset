@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5deddddb71fd83642bc49991c013f8e9, type: 3}
   m_Name: LevelStats
   m_EditorClassIdentifier: 
-  bodyCount: 120
-  time: 120
+  bodyCount: 0
+  time: 0
