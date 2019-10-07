@@ -40,7 +40,7 @@ namespace Behaviour {
             if (orientation) {
                 // horizontal
                 transform.position = new Vector3(
-                    mInitialPosition.x = mCurve.Evaluate(Time.time / mDuration) * TILE_SIZE * mSize,
+                    mInitialPosition.x + mCurve.Evaluate(Time.time / mDuration) * TILE_SIZE * mSize,
                     mInitialPosition.y,
                     mInitialPosition.z);
             } else {
