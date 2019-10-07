@@ -59,9 +59,10 @@ namespace Control {
         }
 
         // Update is called once per frame
-        private void Update() {
-            var suicideRequested = Input.GetButtonUp("Suicide"); // || !_currentPig;
-            if (!suicideRequested) return;
+        private void Update()
+        {
+            if (!Input.GetButtonUp("Suicide")) return;
+            if (Time.timeScale < 1) return; // currently in menu
 
             if (canSuicide) {
                 SuicidePig();

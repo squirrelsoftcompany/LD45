@@ -44,6 +44,7 @@ namespace control {
         // Update is called once per frame
         private void Update() {
             if (!Input.GetButtonDown("Suicide") || !canPossess) return;
+            if (Time.timeScale < 1) return; // currently in menu
 
             // We want to POSSESS! (and we can)
             // Possess
