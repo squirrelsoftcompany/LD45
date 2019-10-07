@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using GameEventSystem;
+﻿using GameEventSystem;
 using UnityEngine;
-
 
 namespace Behaviour
 {
@@ -20,12 +17,17 @@ namespace Behaviour
         [SerializeField]
         private bool mActivated = false;
 
+        private Animator animator;
+
         private Vector3 mInitialPosition;
+
+        private static readonly int TURNING = Animator.StringToHash("turning");
         // Start is called before the first frame update
 
         void Start()
         {
             mInitialPosition = transform.position;
+            animator = GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -46,10 +48,12 @@ namespace Behaviour
         public override void ButtonateMe()
         {
             mActivated = false;
+            animator.SetBool(TURNING, false);
         }
         public override void UnbuttonateMe()
         {
             mActivated = true;
+            animator.SetBool(TURNING, true);
         }
     }
 }
