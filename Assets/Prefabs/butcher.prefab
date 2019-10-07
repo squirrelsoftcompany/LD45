@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1875476024}
   - component: {fileID: 1875476026}
   - component: {fileID: 1875476025}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cleaver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 1278416362412464580}
   - component: {fileID: 1278416362412464581}
   - component: {fileID: 589478061}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: butcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ef4042670bc1db74696fe71277a6e3e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

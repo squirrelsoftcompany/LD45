@@ -17,6 +17,8 @@ public class Butcher : MonoBehaviour
     private Rigidbody2D mRb2D;
     private bool mSlowed = false;
     private GameObject mCleaver;
+    private Vector3 mSpawn;
+    private bool mPigHunt = false;
 
     private static readonly int ATTACK = Animator.StringToHash("Attack");
     private static readonly int WALK = Animator.StringToHash("Walk");
@@ -27,6 +29,7 @@ public class Butcher : MonoBehaviour
         mAnimator = GetComponent<Animator>();
         mRb2D = GetComponent<Rigidbody2D>();
         mCleaver = transform.Find("Cleaver").gameObject;
+        mSpawn = new Vector3(transform.position.x, transform.position.y, transform.position.z);
     }
 
     private void FixedUpdate()
@@ -38,32 +41,32 @@ public class Butcher : MonoBehaviour
         {
             mRb2D.velocity = new Vector2(mRb2D.velocity.x * lCurrentMaxSpeed, mRb2D.velocity.y);
         }
-        //Look at the target
-        transform.localScale = new Vector3((mTarget.transform.position.x - transform.position.x < 0.0f) ? 1.0f : -1.0f, transform.localScale.y, transform.localScale.z);
-
+        //Look at the target or the spawn
+        if (mDirection.magnitude > Mathf.Epsilon)
+            transform.localScale = new Vector3(((mPigHunt ? mTarget.transform.position.x : mSpawn.x)- transform.position.x < 0.0f) ? 1.0f : -1.0f, transform.localScale.y, transform.localScale.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        mTarget = GameObject.FindGameObjectsWithTag("Player")[0];
-        
+        bool lVisible = false;
+        mTarget = GameObject.FindGameObjectWithTag("Player");
+
         if (mTarget)
         {
             //Search a target
             Transform lTargetTransform = mTarget.transform;
             float lDistanceFromTarget = Vector3.Distance(transform.position, lTargetTransform.position);
-            bool lVisible = false;
 
             // Is it visible ?
-            int layerMask = 1 << 8| 1 << 16 | 1 << 20; //Only collide on player, ground and door
-            
+            int layerMask = 1 << 8 | 1 << 16 | 1 << 20; //Only collide on player, ground and door
+
             Vector3 lViewDirection = Vector3.Normalize(lTargetTransform.position - transform.position);
-            Vector3 lUppedVector = transform.position + (Vector3.up*0.15f);
+            Vector3 lUppedVector = transform.position + (Vector3.up * 0.15f);
             RaycastHit2D lHit = Physics2D.Raycast(lUppedVector, transform.TransformDirection(lViewDirection), Mathf.Infinity, layerMask);
             if (lHit.collider != null)
             {
-                if(lHit.transform.gameObject.CompareTag("Player"))
+                if (lHit.transform.gameObject.CompareTag("Player"))
                 {
                     Debug.DrawRay(lUppedVector, transform.TransformDirection(lViewDirection) * lHit.distance, Color.red);
                     lVisible = true;
@@ -75,15 +78,33 @@ public class Butcher : MonoBehaviour
             }
 
             // Is it close enought ?
-            if (lVisible && lDistanceFromTarget < mMaxTargetDistance && lDistanceFromTarget > mMinTargetDistance)
+            if (lVisible && lDistanceFromTarget < mMaxTargetDistance)
             {
-                mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
-                mAnimator.SetBool(WALK, true);
+                mPigHunt = true;
+                if (lDistanceFromTarget > mMinTargetDistance)
+                {
+                    mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
+                    mAnimator.SetBool(WALK, true);
+                }
+                else
+                {
+                    mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
+                    mAnimator.SetBool(WALK, false);
+                }
             }
             else
             {
-                mDirection = Vector3.zero;
-                mAnimator.SetBool(WALK, false);
+                mPigHunt = false;
+                if (Mathf.Abs(transform.position.x - mSpawn.x) > 0.1)
+                {
+                    mDirection = mSpawn.x > transform.position.x ? Vector3.right : Vector3.left;
+                    mAnimator.SetBool(WALK, true);
+                }
+                else
+                {
+                    mDirection = Vector3.zero;
+                    mAnimator.SetBool(WALK, false);
+                }
             }
 
             //If very close, try to hit the pig
@@ -94,6 +115,20 @@ public class Butcher : MonoBehaviour
             else
             {
                 mAnimator.SetBool(ATTACK, false);
+            }
+        }
+        else
+        {
+            mPigHunt = false;
+            if (Mathf.Abs(transform.position.x-mSpawn.x) > 0.1)
+            {
+                mDirection = mSpawn.x > transform.position.x ? Vector3.right : Vector3.left;
+                mAnimator.SetBool(WALK, true);
+            }
+            else
+            {
+                mDirection = Vector3.zero;
+                mAnimator.SetBool(WALK, false);
             }
         }
     }

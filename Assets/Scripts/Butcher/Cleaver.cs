@@ -21,7 +21,7 @@ public class Cleaver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.layer == 20)
         {
             onEnter.Raise();
         }
