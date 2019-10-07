@@ -47,7 +47,6 @@ namespace Behaviour
         {
             mActivated = false;
         }
-
         public override void UnbuttonateMe()
         {
             mActivated = true;
