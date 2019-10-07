@@ -178,11 +178,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1484370150005605921}
   - component: {fileID: 1446553635658713669}
-  - component: {fileID: 254296248}
   - component: {fileID: 6954816124221593646}
   - component: {fileID: 122777082768274832}
   - component: {fileID: 5983757661607385984}
   - component: {fileID: 737655536163476390}
+  - component: {fileID: 7149785685987006558}
   m_Layer: 0
   m_Name: BaconSamedi
   m_TagString: Player
@@ -230,32 +230,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &254296248
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484370150005605934}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.00365901, y: 0.1149002}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4489889, y: 0.22914726}
-  m_EdgeRadius: 0
 --- !u!114 &6954816124221593646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +300,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pigList: {fileID: 11400000, guid: 72526fa6d90a9e544bf33e0074c525a3, type: 2}
+--- !u!70 &7149785685987006558
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484370150005605934}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0008038151, y: 0.11125641}
+  m_Size: {x: 0.39723217, y: 0.19341408}
+  m_Direction: 1
 --- !u!1 &4355965012429843043
 GameObject:
   m_ObjectHideFlags: 0
