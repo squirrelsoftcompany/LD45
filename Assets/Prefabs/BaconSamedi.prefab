@@ -5179,6 +5179,7 @@ GameObject:
   - component: {fileID: 5983757661607385984}
   - component: {fileID: 737655536163476390}
   - component: {fileID: 7149785685987006558}
+  - component: {fileID: 5724957421754657024}
   m_Layer: 20
   m_Name: BaconSamedi
   m_TagString: Player
@@ -5284,7 +5285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pigList: {fileID: 11400000, guid: 72526fa6d90a9e544bf33e0074c525a3, type: 2}
-  attackRange: 0.63
+  attackRange: 1.17
 --- !u!114 &737655536163476390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5316,6 +5317,50 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0008038151, y: 0.11125641}
   m_Size: {x: 0.39723217, y: 0.19341408}
   m_Direction: 1
+--- !u!114 &5724957421754657024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484370150005605934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa39e69ee488484439cd909f5f2a3254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventAndResponses:
+  - name: On death unselect
+    gameEvent: {fileID: 11400000, guid: 0cbec012a51eb6e47b0ba0a284cd7e96, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5983757661607385984}
+          m_MethodName: unselectAll
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseForSentString:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseForSentMonoBehaviour:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &4355965012429843043
 GameObject:
   m_ObjectHideFlags: 0

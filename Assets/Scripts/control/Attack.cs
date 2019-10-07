@@ -8,12 +8,20 @@ namespace control {
 
         private Flammable flammableClosest;
 
+        public void unselectAll() {
+            if (flammableClosest != null) {
+                flammableClosest.deselect();
+                flammableClosest = null;
+            }
+        }
+
         // Update is called once per frame
         private void Update() {
             var closest = getClosestRangedPig();
             if (!closest) {
                 if (flammableClosest != null) {
                     flammableClosest.deselect();
+                    flammableClosest = null;
                 }
 
                 return;
