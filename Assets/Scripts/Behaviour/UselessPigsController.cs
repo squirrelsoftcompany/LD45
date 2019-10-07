@@ -50,11 +50,11 @@ namespace Behaviour {
         }
 
         public void switchOff() {
-            throw new System.NotImplementedException();
+            Debug.Log("Switch off");
         }
 
         public void lightItUp() {
-            throw new System.NotImplementedException();
+            Debug.Log("Light up spawn");
         }
     }
 }
