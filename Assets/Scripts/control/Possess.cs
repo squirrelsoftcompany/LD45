@@ -62,7 +62,7 @@ namespace control {
             foreach (var spawn in spawns) {
                 var dirToTarget3 = spawn.transform.position - currentPosition;
                 var distSqrToTarget = new Vector2(dirToTarget3.x, dirToTarget3.y).sqrMagnitude;
-                if (distSqrToTarget > closestDistSqr || distSqrToTarget > spawn.Range * spawn.Range) continue;
+                if (distSqrToTarget > closestDistSqr || !spawn.Active) continue;
                 closestDistSqr = distSqrToTarget;
                 best = spawn;
             }

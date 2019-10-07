@@ -6,10 +6,12 @@ namespace Behaviour {
     public class Spawn : MonoBehaviour {
         [SerializeField] private float range;
 
+        private bool active;
+
         [Required] [SceneObjectsOnly] [SerializeField]
         private GameObject instructionText;
 
-        public float Range => range;
+        public bool Active => active;
 
         private CircleCollider2D circleCollider2D;
         private UselessPigsController controller;
@@ -37,12 +39,14 @@ namespace Behaviour {
             // A mask alone enters this area so light it up!
             instructionText.SetActive(true);
             controller.lightItUp();
+            active = true;
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             // 
             instructionText.SetActive(false);
             controller.switchOff();
+            active = false;
         }
     }
 }
