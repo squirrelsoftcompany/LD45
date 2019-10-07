@@ -119,6 +119,7 @@ public class Butcher : MonoBehaviour
         }
         else
         {
+            mAnimator.SetBool(ATTACK, false);
             mPigHunt = false;
             if (Mathf.Abs(transform.position.x-mSpawn.x) > 0.1)
             {
