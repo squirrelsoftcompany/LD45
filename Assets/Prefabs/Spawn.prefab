@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4477351914615401069
 Transform:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   alphaColorOff: 0.304
   uselessPigPrefab: {fileID: 8169300031914513557, guid: 3ecfa7dea3a0b944f90896e6c009242b,
     type: 3}
-  nbPigs: 12
+  nbPigs: 30
 --- !u!1 &2935337845914568305
 GameObject:
   m_ObjectHideFlags: 0
