@@ -15,6 +15,8 @@ namespace control {
                 if (flammableClosest != null) {
                     flammableClosest.deselect();
                 }
+
+                return;
             }
 
             if (flammableClosest != closest) {
