@@ -5,8 +5,11 @@ using UnityEngine;
 
 namespace Behaviour {
     public class UselessPigsController : MonoBehaviour {
-        private int iColor;
         private List<GameObject> pigs;
+        [SerializeField] [Range(0f, 1f)] private float maxTimeBetweenAnim;
+        [SerializeField] [Range(0f, 1f)] private float alphaColorOff;
+
+        private bool on;
 
         [AssetsOnly] [Required] [SerializeField]
         private GameObject uselessPigPrefab;
@@ -42,19 +45,34 @@ namespace Behaviour {
         private IEnumerator cascadeStartAnimation() {
             foreach (var pig in pigs) {
                 pig.GetComponent<Animator>().SetTrigger(RUNNING_AROUND);
-                pig.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
-//                iColor++;
-//                iColor %= colors.Length;
-                yield return new WaitForSeconds(Random.value);
+                var spriteRenderer = pig.GetComponent<SpriteRenderer>();
+                var color = colors[Random.Range(0, colors.Length)];
+                color.a = on ? 1f : alphaColorOff;
+                spriteRenderer.color = color;
+                yield return new WaitForSeconds(Random.value * maxTimeBetweenAnim);
             }
         }
 
         public void switchOff() {
             Debug.Log("Switch off");
+            on = false;
+            foreach (var pig in pigs) {
+                var spriteRenderer = pig.GetComponent<SpriteRenderer>();
+                var color = spriteRenderer.color;
+                color.a = alphaColorOff;
+                spriteRenderer.color = color;
+            }
         }
 
         public void lightItUp() {
             Debug.Log("Light up spawn");
+            on = true;
+            foreach (var pig in pigs) {
+                var spriteRenderer = pig.GetComponent<SpriteRenderer>();
+                var color = spriteRenderer.color;
+                color.a = 1f;
+                spriteRenderer.color = color;
+            }
         }
     }
 }
