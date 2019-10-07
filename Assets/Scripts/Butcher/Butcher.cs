@@ -38,50 +38,63 @@ public class Butcher : MonoBehaviour
         {
             mRb2D.velocity = new Vector2(mRb2D.velocity.x * lCurrentMaxSpeed, mRb2D.velocity.y);
         }
-        transform.localScale = new Vector3(mRb2D.velocity.x < 0.0f ? 1.0f : -1.0f, transform.localScale.y, transform.localScale.z);
+        //Look at the target
+        transform.localScale = new Vector3((mTarget.transform.position.x - transform.position.x < 0.0f) ? 1.0f : -1.0f, transform.localScale.y, transform.localScale.z);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Search a target
-        Transform lTargetTransform = mTarget.transform;
-        float lDistanceFromTarget = Vector3.Distance(transform.position, lTargetTransform.position);
-        bool lVisible = false;
+        mTarget = GameObject.FindGameObjectsWithTag("Player")[0];
+        
+        if (mTarget)
+        {
+            //Search a target
+            Transform lTargetTransform = mTarget.transform;
+            float lDistanceFromTarget = Vector3.Distance(transform.position, lTargetTransform.position);
+            bool lVisible = false;
 
-        // Is it visible ?
-        int layerMask = 1 << 1; // TODO : Use the correct layer mask !! Currently, it is just hitting itself....
-        layerMask = ~layerMask;
+            // Is it visible ?
+            int layerMask = 1 << 8| 1 << 16 | 1 << 20; //Only collide on player, ground and door
+            
+            Vector3 lViewDirection = Vector3.Normalize(lTargetTransform.position - transform.position);
+            Vector3 lUppedVector = transform.position + (Vector3.up*0.15f);
+            RaycastHit2D lHit = Physics2D.Raycast(lUppedVector, transform.TransformDirection(lViewDirection), Mathf.Infinity, layerMask);
+            if (lHit.collider != null)
+            {
+                if(lHit.transform.gameObject.CompareTag("Player"))
+                {
+                    Debug.DrawRay(lUppedVector, transform.TransformDirection(lViewDirection) * lHit.distance, Color.red);
+                    lVisible = true;
+                }
+                else
+                {
+                    Debug.DrawRay(lUppedVector, transform.TransformDirection(lViewDirection) * lHit.distance, Color.yellow);
+                }
+            }
 
-        Vector3 lViewDirection = Vector3.Normalize(lTargetTransform.position - transform.position);
-        // Does the ray intersect any objects excluding the butcher layer
-        RaycastHit2D lHit = Physics2D.Raycast(transform.position, transform.TransformDirection(lViewDirection), Mathf.Infinity, layerMask);
-        if (lHit.collider != null)
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(lViewDirection) * lHit.distance, Color.yellow);
-            lVisible = true;
-        }
+            // Is it close enought ?
+            if (lVisible && lDistanceFromTarget < mMaxTargetDistance && lDistanceFromTarget > mMinTargetDistance)
+            {
+                mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
+                mAnimator.SetBool(WALK, true);
+            }
+            else
+            {
+                mDirection = Vector3.zero;
+                mAnimator.SetBool(WALK, false);
+            }
 
-        // Is it close enought ?
-        if (lVisible && lDistanceFromTarget < mMaxTargetDistance && lDistanceFromTarget > mMinTargetDistance)
-        {
-            mDirection = lTargetTransform.position.x > transform.position.x ? Vector3.right : Vector3.left;
-            mAnimator.SetBool(WALK, true);
-        }
-        else
-        {
-            mDirection = Vector3.zero;
-            mAnimator.SetBool(WALK, false);
-        }
-
-        //If very close, try to hit the pig
-        if (lDistanceFromTarget <= mMinTargetDistance + Mathf.Epsilon)
-        {
-            mAnimator.SetBool(ATTACK, true);
-        }
-        else
-        {
-            mAnimator.SetBool(ATTACK, false);
+            //If very close, try to hit the pig
+            if (lDistanceFromTarget <= mMinTargetDistance + Mathf.Epsilon)
+            {
+                mAnimator.SetBool(ATTACK, true);
+            }
+            else
+            {
+                mAnimator.SetBool(ATTACK, false);
+            }
         }
     }
 
