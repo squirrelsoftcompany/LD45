@@ -10,8 +10,7 @@ public class PigList : ScriptableObject {
     
     private void OnEnable()
     {
-        levelStats.time = 0;
-        levelStats.bodyCount = 0;
+        
     }
 
     public void remove(Flammable flammable) {

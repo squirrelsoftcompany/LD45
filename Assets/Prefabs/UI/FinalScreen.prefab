@@ -801,7 +801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Congratulations ! You escaped another level of the slaugtherhouse !
+  m_text: Congratulations ! You escaped the {0} of the slaugtherhouse !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6921d604021ed33438bfa8aa520f497a, type: 2}
   m_sharedMaterial: {fileID: -1086359335570669492, guid: 6921d604021ed33438bfa8aa520f497a,
