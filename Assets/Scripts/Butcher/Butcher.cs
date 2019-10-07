@@ -19,6 +19,8 @@ public class Butcher : MonoBehaviour
     private GameObject mCleaver;
     private Vector3 mSpawn;
     private bool mPigHunt = false;
+    private float mTimeReturnSpawn = 1.0f;
+    private float mTimerToReturnSpawn = 0.0f;
 
     private static readonly int ATTACK = Animator.StringToHash("Attack");
     private static readonly int WALK = Animator.StringToHash("Walk");
@@ -54,6 +56,7 @@ public class Butcher : MonoBehaviour
 
         if (mTarget)
         {
+            mTimerToReturnSpawn = mTimeReturnSpawn;
             //Search a target
             Transform lTargetTransform = mTarget.transform;
             float lDistanceFromTarget = Vector3.Distance(transform.position, lTargetTransform.position);
@@ -106,7 +109,6 @@ public class Butcher : MonoBehaviour
                     mAnimator.SetBool(WALK, false);
                 }
             }
-
             //If very close, try to hit the pig
             if (lDistanceFromTarget <= mMinTargetDistance + Mathf.Epsilon)
             {
@@ -119,9 +121,10 @@ public class Butcher : MonoBehaviour
         }
         else
         {
+            mTimerToReturnSpawn -= Time.deltaTime;
             mAnimator.SetBool(ATTACK, false);
             mPigHunt = false;
-            if (Mathf.Abs(transform.position.x-mSpawn.x) > 0.1)
+            if (Mathf.Abs(transform.position.x-mSpawn.x) > 0.1 && mTimerToReturnSpawn < 0)
             {
                 mDirection = mSpawn.x > transform.position.x ? Vector3.right : Vector3.left;
                 mAnimator.SetBool(WALK, true);
