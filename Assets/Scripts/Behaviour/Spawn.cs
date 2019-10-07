@@ -1,6 +1,4 @@
-﻿using System;
-using GameEventSystem;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Behaviour {
@@ -26,7 +24,13 @@ namespace Behaviour {
             var color = Color.magenta;
             color.a = 0.3f;
             Gizmos.color = color;
-            Gizmos.DrawSphere(transform.position, range);
+            var position1 = transform.position;
+            Gizmos.DrawSphere(position1, range);
+
+            Gizmos.color = Color.blue;
+            var position = position1;
+            Gizmos.DrawLine(position - Vector3.left * 3,
+                position + Vector3.left * 3);
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
