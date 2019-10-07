@@ -223,6 +223,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf5e4a987a1cca42a1076e6fd1546cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &321369972
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2946646871787085418, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_Name
+      value: FogArea Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.975
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2946646871787085416, guid: b03b527f7f6c8d448a1d4c6d2ba86891,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b03b527f7f6c8d448a1d4c6d2ba86891, type: 3}
 --- !u!1 &389279784
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1616178716
 Transform:
   m_ObjectHideFlags: 0
@@ -653,8 +722,8 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 40365051
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -674,14 +743,38 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: NaN
+      e01: 0
+      e02: 1.05e-43
+      e03: 0
+      e10: NaN
+      e11: 0
+      e12: NaN
+      e13: 0
+      e20: 1.05e-43
+      e21: 0
+      e22: 0
+      e23: 0
+      e30: 0
+      e31: NaN
+      e32: 0
+      e33: 2.014e-42
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: 1.9273286e-36, g: 1.9273286e-36, b: 1.9273286e-36, a: 1.9273286e-36}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
+  m_Origin: {x: -74, y: -34, z: 0}
+  m_Size: {x: 134, y: 72, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
