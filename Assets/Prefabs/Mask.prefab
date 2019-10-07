@@ -10033,7 +10033,6 @@ GameObject:
   - component: {fileID: 7037382385229992942}
   - component: {fileID: 4756022447088322687}
   - component: {fileID: 31665217464304317}
-  - component: {fileID: 6422977835540044707}
   m_Layer: 15
   m_Name: Mask
   m_TagString: Mask
@@ -10325,24 +10324,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6422977835540044707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6727222064262637544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 431effd02b844cd3831ca112feb05f47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawns: []
-  prefabPig: {fileID: 1484370150005605934, guid: 29202e44cae08224898b7665bc895d91,
-    type: 3}
-  range: 30
-  onRevive: {fileID: 11400000, guid: dbc9fd05a34c59b4ea3a139912a09bd3, type: 2}
-  canPossess: 1
 --- !u!1 &7236366469786100475
 GameObject:
   m_ObjectHideFlags: 0
@@ -10905,9 +10886,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8488669390190442523}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6367ba79bed9114a9ce182ff202b0f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 4490b444d506e1d44b5bea724fb28ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_main: {fileID: 2909430644668881285}
