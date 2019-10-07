@@ -52,7 +52,9 @@ namespace Behaviour {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            onEnter.Raise();
+            if (mActivated) {
+                onEnter.Raise();
+            }
         }
 
         public override void ButtonateMe() {
