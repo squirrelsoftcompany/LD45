@@ -52,9 +52,7 @@ namespace Behaviour {
         }
 
         private void OnTriggerEnter2D(Collider2D other) {
-            if (other.gameObject.CompareTag("Player")) {
-                onEnter.Raise();
-            }
+            onEnter.Raise();
         }
 
         public override void ButtonateMe() {
