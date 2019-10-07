@@ -19,7 +19,7 @@ namespace control {
             var currentPosition = transform.position;
             foreach (var flammable in pigList.pigs) {
                 var directionToTarget = flammable.transform.position - currentPosition;
-                var distSqrtToTarget = directionToTarget.sqrMagnitude;
+                var distSqrtToTarget = new Vector2(directionToTarget.x, directionToTarget.y).sqrMagnitude;
                 if (!(distSqrtToTarget < closestDistSqr) ||
                     !(distSqrtToTarget < attackRange * attackRange)) continue;
                 closestDistSqr = distSqrtToTarget;
