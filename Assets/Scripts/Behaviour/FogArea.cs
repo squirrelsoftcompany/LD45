@@ -1,5 +1,4 @@
-﻿using Control;
-using GameEventSystem;
+﻿using GameEventSystem;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ namespace Behaviour {
             var soul = other.GetComponent<SoulBehaviour>();
             if (soul) {
                 soul.setFog(true);
-            } else if (other.GetComponent<Suicide>()) {
+            } else {
                 onEnter.Raise();
             }
         }
@@ -27,7 +26,7 @@ namespace Behaviour {
             var soul = other.GetComponent<SoulBehaviour>();
             if (soul) {
                 soul.setFog(false);
-            } else if (other.GetComponent<Suicide>()) {
+            } else {
                 onExit.Raise();
             }
         }
