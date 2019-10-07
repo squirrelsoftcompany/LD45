@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace control {
     [RequireComponent(typeof(Animator))]
@@ -14,11 +15,12 @@ namespace control {
         [Required] [SceneObjectsOnly] [SerializeField]
         private MeshRenderer instructionBurn;
 
-        private bool firstTime;
+        private int firstTime;
+        [SerializeField] private int maxTimeTuto = 3;
 
         private void Start() {
             animator = GetComponent<Animator>();
-            firstTime = PlayerPrefs.GetInt("FirstTime", 1) == 1;
+            firstTime = PlayerPrefs.GetInt("FirstTime", 0);
         }
 
         public void startFlammable(bool isABody) {
@@ -28,8 +30,8 @@ namespace control {
         public void startFire() {
             deselect();
             animator.SetTrigger(BURN);
-            firstTime = false;
-            PlayerPrefs.SetInt("FirstTime", 0);
+            firstTime++;
+            PlayerPrefs.SetInt("FirstTime", firstTime);
         }
 
         public void endBurn() {
@@ -52,7 +54,7 @@ namespace control {
         public void select() {
             // TODO highlight this pig
             lightSelect.enabled = true;
-            if (firstTime) {
+            if (firstTime < maxTimeTuto) {
 //                GameObject.FindGameObjectWithTag("InstructionBurn").SetActive(true);
 
                 instructionBurn.enabled = true;
