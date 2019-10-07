@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: SQuirrelSoftCompany
-  productName: Template
+  productName: The VOODOO SLAUGHTERHOUSE
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.23529413, g: 0.23137257, b: 0.23529413, a: 1}
@@ -283,7 +283,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: aabcaecaea318fe40962bb5c45b08d7d, type: 3}
+      m_Icon: {fileID: 2800000, guid: afaa7db9502f3e545be08a712c08a584, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
