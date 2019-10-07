@@ -28,12 +28,12 @@ namespace UI
         {
             // Customize final screen
             _buildIndex = SceneManager.GetActiveScene().buildIndex;
-            var str = SceneManager.sceneCountInBuildSettings == _buildIndex + 1 ? "level "+_buildIndex : "last level";
+            var str = SceneManager.sceneCountInBuildSettings == _buildIndex + 1 ? "last level" : "level "+_buildIndex;
             str = _buildIndex == 1 ? "first level" : str;
 
             finalSentence.text = string.Format(finalSentence.text, str);
             
-            if (_buildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+            if (SceneManager.sceneCountInBuildSettings == _buildIndex + 1)
                 nextButtonText.text = "ESCAPE";
 
             // init game/level stats
