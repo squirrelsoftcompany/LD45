@@ -1,10 +1,10 @@
-# Template
+# LD45
 
-Here's a very short template of Unity3D's project.
+Here's the source code for our entry in [LD45](https://ldjam.com/events/ludum-dare/45/$168123).
 
 # Version of Unity3D
 
-Version of Unity3D's used : 2019.1.0f2
+Version of Unity3D's used : 2019.2.6f2
 
 # Warnings
 
