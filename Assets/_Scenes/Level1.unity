@@ -263,7 +263,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6445887332135025050, guid: cf9080f809ce3064baff11254d17b9dd,
         type: 3}
+      propertyPath: buttonable.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445887332135025050, guid: cf9080f809ce3064baff11254d17b9dd,
+        type: 3}
       propertyPath: buttonable
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445887332135025050, guid: cf9080f809ce3064baff11254d17b9dd,
+        type: 3}
+      propertyPath: buttonable.Array.data[0]
       value: 
       objectReference: {fileID: 1702967618}
     m_RemovedComponents: []
