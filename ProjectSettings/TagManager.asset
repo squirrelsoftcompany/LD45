@@ -10,6 +10,8 @@ TagManager:
   - Pig
   - Soul
   - Body
+  - LightSelect
+  - InstructionBurn
   layers:
   - Default
   - TransparentFX
