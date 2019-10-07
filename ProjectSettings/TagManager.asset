@@ -9,6 +9,7 @@ TagManager:
   - SoulsContainer
   - Pig
   - Soul
+  - Body
   layers:
   - Default
   - TransparentFX
