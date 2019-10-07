@@ -44,5 +44,13 @@ namespace Behaviour
             foreach(Buttonable button in buttonable)
                 button?.UnbuttonateMe();
         }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            
+            foreach (var b in buttonable)
+                Gizmos.DrawLine(transform.position, b.transform.position);
+        }
     }
 }
