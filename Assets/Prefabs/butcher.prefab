@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1875476024}
   - component: {fileID: 1875476026}
   - component: {fileID: 1875476025}
-  m_Layer: 17
+  m_Layer: 24
   m_Name: Cleaver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
