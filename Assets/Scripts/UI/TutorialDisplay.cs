@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TutorialDisplay : MonoBehaviour
+namespace UI
 {
-    public GameObject text;
-    public Stats.Stats stats;
-    
-    private void OnTriggerEnter2D(Collider2D other)
+    public class TutorialDisplay : MonoBehaviour
     {
-        if (stats.bodyCount > 0) return;
-        text.SetActive(true);
-    }
+        public GameObject text;
+        public Stats.Stats stats;
     
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        text.SetActive(false);
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (stats.bodyCount > 0) return;
+            text.SetActive(true);
+        }
+    
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            text.SetActive(false);
+        }
     }
 }
