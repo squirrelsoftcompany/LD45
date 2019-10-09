@@ -11,7 +11,7 @@ namespace control {
         }
 
         private void FixedUpdate() {
-            var vectorDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+            var vectorDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
 //            var theSpeed = Time.fixedDeltaTime * speed;
             rb2D.velocity = vectorDir * speed; //* theSpeed;
