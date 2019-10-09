@@ -25,6 +25,11 @@ namespace control {
 
         public void startFlammable(bool isABody) {
             pigList.add(this, isABody);
+            if (Mathf.Sign(instructionBurn.transform.lossyScale.x) < 0)
+            {
+                var localScale = instructionBurn.transform.localScale;
+                instructionBurn.transform.localScale = new Vector3(-Mathf.Abs(localScale.x), localScale.y, localScale.z);
+            }
         }
 
         public void startFire() {
